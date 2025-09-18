@@ -15,13 +15,11 @@ Internal:
 
 ---
 
-### FPGA ParaLiNGAM Main
-
 # Project 
 
 We have implemented the ParaLiNGAM algorithm in Python ([ACORN repository]()) and we have setup a suitable environment ([FOOD repository]()). The aim is to implement the algorithm with a successful report. 
 
-## Main 
+## FPGA ParaLiNGAM Main
 
 
 
@@ -171,6 +169,7 @@ export PATH=$XILINX_XRT/bin:$PATH
 export LD_LIBRARY_PATH=$XILINX_XRT/lib:$LD_LIBRARY_PATH
 ```
 
+---
 
 ### Bibliography
 
