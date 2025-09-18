@@ -22,7 +22,7 @@ We have implemented the ParaLiNGAM algorithm in Python ([ACORN repository]()) an
 ## FPGA ParaLiNGAM Main
 
 ###### Python Implementation:
-* This implementation is a faithful and numerically robust Python equivalent of the final, optimized DPC++ code. It serves as an excellent functional reference for the C++ version.
+* This implementation is a Python equivalent of the C++ code.
 * Algorithmic Faithfulness:
 	* Parallel Root Finding: Uses Python's multiprocessing.Pool to parallelize the score calculations, logically mirroring the DPC++ "Scatter-Reduce" approach.
 	* Messaging/Comparison Reduction: The worker_task correctly updates scores for both variables involved in a comparison simultaneously.
@@ -35,7 +35,7 @@ Run:
 ```
 
 ###### C++ Implementation:
-* This implementation is a numerically robust and highly optimized parallel version of the core ParaLiNGAM logic, specifically tailored for an FPGA target.
+* This implementation is a version of the core ParaLiNGAM logic, specifically tailored for an FPGA target.
 * Algorithmic Faithfulness:
 	* Parallel Root Finding: Correctly uses a "Scatter-Reduce" pattern in para_find_root, which is an excellent, FPGA-friendly way to parallelize the score calculations without inefficient atomic operations.
 	* Messaging/Comparison Reduction: The scatter-reduce kernel correctly implements the messaging mechanism by calculating scores for both variables (i and j) from a single comparison, effectively halving the workload.
