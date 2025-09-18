@@ -25,7 +25,8 @@ void ParaLingamCausalOrderAlgorithm::standardize_data(sycl::queue& q, sycl::buff
             }
 
             float mean = sum / num_rows;
-            float std_dev = sycl::sqrt(sum_sq / num_rows - mean * mean);
+            // **FIX APPLIED HERE FOR ROBUSTNESS**
+            float std_dev = sycl::sqrt(sycl::fabs(sum_sq / num_rows - mean * mean));
 
             if (std_dev > 1e-9f) {
                 for (size_t row = 0; row < num_rows; ++row) {
@@ -87,8 +88,9 @@ void ParaLingamCausalOrderAlgorithm::update_covariance(sycl::queue& q, sycl::buf
             float cov_ir = current_cov[i_old][root_idx];
             float cov_jr = current_cov[j_old][root_idx];
 
-            float var_r_i = 1.0f - cov_ir * cov_ir;
-            float var_r_j = 1.0f - cov_jr * cov_jr;
+            // **FIX APPLIED HERE**: Use sycl::fabs to prevent sqrt of negative.
+            float var_r_i = sycl::fabs(1.0f - cov_ir * cov_ir);
+            float var_r_j = sycl::fabs(1.0f - cov_jr * cov_jr);
             
             float new_cov_ij = 0.0f;
             if (var_r_i > 1e-9f && var_r_j > 1e-9f) {
@@ -149,7 +151,8 @@ int ParaLingamCausalOrderAlgorithm::para_find_root(sycl::queue& q, sycl::buffer<
                    sum_sq += residual * residual;
                 }
                 float mean = sum / num_rows;
-                float std_dev = sycl::sqrt(sum_sq / num_rows - mean * mean);
+                // **FIX APPLIED HERE FOR ROBUSTNESS**
+                float std_dev = sycl::sqrt(sycl::fabs(sum_sq / num_rows - mean * mean));
 
                 if (std_dev < 1e-9f) return 0.0f;
 
@@ -304,3 +307,4 @@ std::vector<int> ParaLingamCausalOrderAlgorithm::run(const Matrix& matrix) {
 std::string ParaLingamCausalOrderAlgorithm::to_string() const {
     return "ParaLingamAlgorithm";
 }
+
