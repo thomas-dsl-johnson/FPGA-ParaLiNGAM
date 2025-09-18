@@ -21,7 +21,36 @@ We have implemented the ParaLiNGAM algorithm in Python ([ACORN repository]()) an
 
 ## FPGA ParaLiNGAM Main
 
+###### Python Implementation:
+* This implementation is a faithful and numerically robust Python equivalent of the final, optimized DPC++ code. It serves as an excellent functional reference for the C++ version.
+* Algorithmic Faithfulness:
+	* Parallel Root Finding: Uses Python's multiprocessing.Pool to parallelize the score calculations, logically mirroring the DPC++ "Scatter-Reduce" approach.
+	* Messaging/Comparison Reduction: The worker_task correctly updates scores for both variables involved in a comparison simultaneously.
+	* Efficient Covariance Update: The _update_covariance_matrix function uses vectorized NumPy operations to implement the same efficient update formula as the C++ version, avoiding costly recalculations.
+ 	* No Threshold Mechanism: Like the C++ version it mirrors, this implementation does not include the thresholding logic.
 
+Run:
+```bash
+    python para_lingam_causal_order_algorithm_for_fpga.py
+```
+
+###### C++ Implementation:
+* This implementation is a numerically robust and highly optimized parallel version of the core ParaLiNGAM logic, specifically tailored for an FPGA target.
+* Algorithmic Faithfulness:
+	* Parallel Root Finding: Correctly uses a "Scatter-Reduce" pattern in para_find_root, which is an excellent, FPGA-friendly way to parallelize the score calculations without inefficient atomic operations.
+	* Messaging/Comparison Reduction: The scatter-reduce kernel correctly implements the messaging mechanism by calculating scores for both variables (i and j) from a single comparison, effectively halving the workload.
+	* Efficient Covariance Update: It faithfully implements the paper's mathematical simplification for updating the covariance matrix between iterations in the update_covariance kernel, which is a critical performance optimization.
+	* No Threshold Mechanism: This feature is deliberately omitted. The complex, stateful logic of thresholding is not well-suited for a simple, high-throughput FPGA kernel architecture. The current design prioritizes hardware efficiency over implementing this specific software-level optimization.
+
+FPGA Emulation:
+```
+icpx -fintelfpga -DFPGA_EMULATOR main.cpp ParaLingam.cpp -o paralingam_faithful_emu
+```
+
+FPGA Hardware Report:
+```bash
+icpx -fintelfpga -Xssource-report main.cpp ParaLingam.cpp -o paralingam_faithful_report
+```
 
 ## Part 0
 
