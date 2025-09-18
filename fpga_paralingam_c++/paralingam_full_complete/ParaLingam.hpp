@@ -24,12 +24,12 @@ private:
 
     // DPC++ helper functions for various stages of the algorithm.
     void standardize_data(sycl::queue& q, sycl::buffer<float, 2>& buffer_x);
-    void calculate_covariance(sycl::queue& q, const sycl::buffer<float, 2>& buffer_x, sycl::buffer<float, 2>& buffer_cov);
+    void calculate_covariance(sycl::queue& q, sycl::buffer<float, 2>& buffer_x, sycl::buffer<float, 2>& buffer_cov);
     
     // NEW: Efficiently updates the covariance matrix for the next iteration.
-    void update_covariance(sycl::queue& q, const sycl::buffer<float, 2>& current_cov_buf, sycl::buffer<float, 2>& next_cov_buf, int root_idx);
+    void update_covariance(sycl::queue& q, sycl::buffer<float, 2>& current_cov_buf, sycl::buffer<float, 2>& next_cov_buf, int root_idx);
 
-    int para_find_root(sycl::queue& q, const sycl::buffer<float, 2>& buffer_x, const sycl::buffer<float, 2>& buffer_cov);
+    int para_find_root(sycl::queue& q, sycl::buffer<float, 2>& buffer_x, sycl::buffer<float, 2>& buffer_cov);
 };
 
 #endif // PARALINGAM_HPP

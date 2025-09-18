@@ -37,7 +37,7 @@ void ParaLingamCausalOrderAlgorithm::standardize_data(sycl::queue& q, sycl::buff
 }
 
 // DPC++ Kernel for calculating the covariance matrix of standardized data.
-void ParaLingamCausalOrderAlgorithm::calculate_covariance(sycl::queue& q, const sycl::buffer<float, 2>& buffer_x, sycl::buffer<float, 2>& buffer_cov) {
+void ParaLingamCausalOrderAlgorithm::calculate_covariance(sycl::queue& q, sycl::buffer<float, 2>& buffer_x, sycl::buffer<float, 2>& buffer_cov) {
     const auto num_rows = buffer_x.get_range()[0];
     const auto num_cols = buffer_x.get_range()[1];
 
@@ -66,7 +66,7 @@ void ParaLingamCausalOrderAlgorithm::calculate_covariance(sycl::queue& q, const 
 }
 
 // NEW KERNEL: Efficiently updates the covariance matrix based on the paper's Algorithm 8.
-void ParaLingamCausalOrderAlgorithm::update_covariance(sycl::queue& q, const sycl::buffer<float, 2>& current_cov_buf, sycl::buffer<float, 2>& next_cov_buf, int root_idx) {
+void ParaLingamCausalOrderAlgorithm::update_covariance(sycl::queue& q, sycl::buffer<float, 2>& current_cov_buf, sycl::buffer<float, 2>& next_cov_buf, int root_idx) {
     const auto n_remaining = next_cov_buf.get_range()[0];
     
     q.submit([&](sycl::handler& h) {
@@ -108,7 +108,7 @@ void ParaLingamCausalOrderAlgorithm::update_covariance(sycl::queue& q, const syc
 
 // DPC++ implementation of the parallel root finding.
 // REVISED to remove large static arrays, making it portable and efficient on FPGAs.
-int ParaLingamCausalOrderAlgorithm::para_find_root(sycl::queue& q, const sycl::buffer<float, 2>& buffer_x, const sycl::buffer<float, 2>& buffer_cov) {
+int ParaLingamCausalOrderAlgorithm::para_find_root(sycl::queue& q, sycl::buffer<float, 2>& buffer_x, sycl::buffer<float, 2>& buffer_cov) {
     const auto num_rows = buffer_x.get_range()[0];
     const auto num_cols = buffer_x.get_range()[1];
 
