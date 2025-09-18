@@ -1,0 +1,3 @@
+[submodule "ACORN"]
+	path = ACORN
+	url = git@github.com:thomas-dsl-johnson/ACORN.git
