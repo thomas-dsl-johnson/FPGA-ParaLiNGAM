@@ -2,6 +2,11 @@
 
 The culmination of my UROP.
 See the repositories that led us here:
+
+External:
+* [Configuration of oneAPI FPGA Runtime for DE10‐Agilex](https://github.com/ceguo/era-hello/wiki/Configuration-of-oneAPI-FPGA-Runtime-for-DE10%E2%80%90Agilex#installing-intel-fpga-add-on-for-oneapi-base-toolkit) by Ce Guo
+
+Interanl:
 * [OATS](https://github.com/thomas-dsl-johnson/OATS)
 * [ACORN](https://github.com/thomas-dsl-johnson/ACORN)
 * [QUICHE](https://github.com/thomas-dsl-johnson/QUICHE)
