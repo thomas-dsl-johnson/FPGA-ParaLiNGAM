@@ -1,0 +1,956 @@
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [15, 38, 14, 12, 6, 36, 37, 39, 23, 22, 24, 7, 19, 13, 11, 5, 29, 35, 2, 9, 30, 16, 4, 28, 33, 8, 32, 3, 40, 34, 1, 10, 0, 41, 27, 18, 25, 20, 26, 31, 17, 21]
+Time taken: 7.06 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+Causal order: [6, 9, 8, 3, 1, 4, 0, 5, 11, 10, 12, 7, 2]
+Time taken: 0.14 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [2, 3, 5, 0, 1, 6, 4]
+Time taken: 0.01 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [6, 7, 1, 4, 2, 0, 5, 3]
+Time taken: 0.03 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [1, 4, 7, 2, 3, 0, 8, 6, 5, 9]
+Time taken: 0.19 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500/sp500.csv
+Causal order: [64, 440, 426, 113, 129, 22, 100, 138, 130, 23, 53, 106, 24, 33, 258, 319, 164, 444, 152, 147, 3, 139, 181, 299, 66, 86, 97, 295, 184, 81, 4, 193, 93, 392, 200, 108, 355, 329, 343, 51, 280, 283, 259, 212, 11, 43, 301, 140, 223, 347, 249, 376, 349, 284, 124, 422, 156, 313, 251, 265, 29, 309, 335, 105, 296, 278, 242, 279, 365, 6, 148, 208, 178, 336, 50, 241, 353, 187, 160, 163, 274, 34, 76, 437, 281, 159, 151, 346, 427, 268, 352, 330, 321, 325, 420, 371, 322, 12, 407, 135, 90, 292, 387, 320, 269, 19, 149, 364, 304, 337, 48, 384, 46, 59, 225, 83, 255, 381, 326, 235, 438, 288, 189, 14, 356, 125, 328, 316, 142, 373, 327, 361, 416, 315, 188, 393, 21, 73, 413, 30, 306, 308, 38, 370, 213, 218, 132, 388, 298, 54, 400, 396, 233, 383, 47, 239, 18, 182, 256, 333, 410, 398, 183, 424, 250, 386, 264, 94, 118, 104, 367, 42, 403, 375, 177, 211, 344, 143, 362, 167, 28, 439, 273, 57, 404, 345, 310, 9, 222, 282, 293, 271, 5, 348, 215, 379, 0, 270, 359, 209, 91, 168, 65, 382, 332, 219, 399, 32, 89, 442, 276, 311, 411, 360, 369, 377, 339, 191, 240, 363, 226, 357, 300, 421, 127, 96, 436, 263, 441, 368, 331, 406, 185, 205, 323, 366, 16, 36, 173, 234, 186, 20, 126, 224, 277, 179, 354, 287, 203, 260, 10, 350, 228, 85, 109, 317, 31, 39, 35, 70, 137, 443, 45, 374, 248, 26, 380, 60, 415, 145, 389, 236, 49, 13, 425, 25, 158, 144, 294, 92, 41, 314, 116, 136, 342, 252, 434, 238, 199, 82, 266, 174, 340, 401, 180, 324, 302, 62, 237, 267, 318, 146, 395, 397, 334, 150, 17, 157, 195, 204, 297, 197, 194, 110, 243, 275, 154, 190, 123, 372, 115, 414, 430, 112, 111, 63, 245, 409, 176, 161, 134, 412, 418, 120, 131, 169, 385, 221, 61, 206, 435, 101, 262, 291, 72, 217, 338, 246, 272, 133, 378, 207, 341, 117, 210, 433, 216, 394, 95, 74, 40, 75, 431, 192, 285, 84, 102, 119, 103, 261, 312, 37, 162, 175, 170, 155, 231, 232, 71, 68, 358, 56, 80, 141, 417, 165, 78, 58, 114, 55, 153, 79, 198, 290, 121, 202, 432, 69, 52, 87, 229, 428, 244, 196, 402, 7, 257, 214, 419, 98, 286, 307, 15, 305, 128, 201, 2, 423, 391, 408, 77, 230, 122, 166, 247, 429, 99, 171, 303, 67, 220, 44, 88, 227, 27, 172, 8, 390, 1, 254, 107, 351, 289, 253, 405]
+Time taken: 8452.34 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 0, 3, 2]
+Time taken: 0.01 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [15, 6, 38, 19, 23, 36, 37, 29, 39, 5, 34, 4, 24, 12, 22, 2, 35, 3, 1, 9, 13, 26, 28, 14, 8, 33, 30, 20, 25, 7, 0, 11, 41, 10, 31, 27, 18, 21, 16, 40, 17, 32]
+Time taken: 3.52 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+Causal order: [6, 9, 8, 1, 4, 3, 0, 11, 5, 10, 12, 7, 2]
+Time taken: 0.08 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [2, 1, 4, 3, 5, 0, 6]
+Time taken: 0.01 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [6, 0, 7, 1, 3, 4, 2, 5]
+Time taken: 0.02 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [1, 7, 4, 3, 2, 0, 8, 9, 6, 5]
+Time taken: 0.11 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500/sp500.csv
+Causal order: [64, 440, 426, 37, 113, 17, 24, 312, 305, 84, 51, 27, 131, 126, 233, 86, 427, 186, 351, 46, 97, 393, 157, 3, 401, 169, 197, 345, 373, 125, 392, 227, 259, 278, 224, 407, 418, 241, 326, 391, 21, 208, 2, 314, 375, 155, 145, 238, 67, 396, 158, 16, 148, 63, 300, 35, 39, 170, 77, 293, 181, 428, 311, 54, 341, 298, 53, 250, 317, 411, 269, 394, 122, 7, 14, 71, 344, 230, 89, 310, 348, 161, 323, 49, 442, 73, 320, 405, 403, 383, 294, 42, 90, 11, 424, 252, 263, 364, 352, 153, 218, 260, 245, 367, 182, 220, 378, 379, 240, 299, 115, 244, 83, 107, 36, 59, 30, 118, 398, 249, 318, 143, 98, 70, 437, 151, 340, 262, 31, 255, 337, 283, 439, 47, 339, 216, 168, 50, 199, 18, 33, 248, 315, 140, 23, 109, 413, 225, 191, 130, 154, 81, 163, 175, 268, 267, 104, 212, 438, 342, 10, 210, 370, 38, 177, 65, 271, 228, 6, 22, 219, 443, 306, 0, 441, 110, 386, 425, 421, 203, 127, 404, 365, 286, 137, 436, 58, 381, 235, 173, 279, 41, 76, 256, 114, 209, 164, 296, 149, 277, 226, 397, 301, 389, 319, 222, 387, 409, 185, 206, 45, 135, 356, 205, 282, 325, 295, 363, 359, 60, 25, 332, 366, 246, 215, 102, 354, 111, 234, 20, 192, 382, 322, 211, 183, 360, 388, 28, 178, 432, 194, 74, 32, 13, 261, 132, 304, 335, 346, 12, 372, 43, 88, 349, 128, 362, 420, 412, 92, 416, 377, 371, 121, 435, 57, 9, 108, 179, 287, 285, 198, 258, 213, 347, 146, 272, 333, 400, 369, 313, 350, 423, 142, 395, 75, 150, 116, 316, 321, 221, 136, 44, 223, 5, 236, 308, 190, 292, 124, 93, 95, 85, 91, 368, 276, 167, 288, 231, 309, 96, 399, 357, 19, 48, 123, 355, 239, 331, 180, 430, 242, 273, 156, 419, 275, 112, 330, 4, 94, 385, 100, 353, 120, 284, 119, 176, 193, 152, 361, 274, 195, 165, 204, 61, 327, 406, 265, 431, 174, 138, 217, 133, 66, 117, 281, 270, 374, 280, 29, 402, 243, 106, 207, 160, 101, 291, 414, 1, 200, 166, 87, 134, 229, 384, 417, 196, 34, 72, 433, 56, 297, 162, 254, 68, 26, 147, 415, 159, 328, 334, 247, 408, 429, 303, 444, 8, 55, 105, 410, 172, 187, 99, 171, 336, 40, 380, 290, 338, 144, 139, 422, 343, 237, 129, 78, 52, 324, 390, 103, 80, 302, 257, 141, 201, 266, 376, 214, 232, 251, 358, 434, 188, 184, 264, 289, 62, 253, 15, 329, 189, 79, 82, 202, 307, 69]
+Time taken: 4618.47 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 3, 0, 2]
+Time taken: 0.0 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [15, 6, 7, 37, 8, 34, 32, 41, 14, 30, 18, 13, 23, 17, 16, 0, 36, 28, 19, 12, 5, 26, 38, 31, 1, 29, 25, 11, 2, 3, 40, 33, 27, 9, 10, 4, 21, 20, 39, 24, 22, 35]
+Time taken: 0.93 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+Causal order: [6, 9, 8, 5, 0, 4, 2, 10, 7, 12, 1, 3, 11]
+Time taken: 0.03 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [0, 1, 2, 3, 4, 5, 6]
+Time taken: 0.0 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [0, 1, 2, 3, 4, 5, 6, 7]
+Time taken: 0.0 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Time taken: 0.0 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500/sp500.csv
+Causal order: [64, 440, 100, 300, 233, 156, 61, 28, 78, 231, 86, 213, 383, 415, 438, 173, 27, 441, 194, 69, 88, 313, 47, 444, 258, 427, 343, 159, 197, 436, 13, 39, 253, 25, 219, 191, 208, 227, 344, 373, 271, 200, 376, 277, 407, 216, 175, 380, 5, 319, 287, 261, 179, 6, 279, 49, 224, 171, 304, 73, 386, 365, 311, 90, 12, 113, 432, 410, 212, 358, 359, 412, 401, 437, 249, 163, 278, 369, 292, 361, 60, 149, 56, 217, 323, 210, 81, 302, 384, 288, 295, 24, 297, 23, 109, 155, 434, 345, 375, 293, 335, 181, 211, 333, 266, 321, 382, 154, 418, 394, 306, 127, 54, 245, 340, 342, 259, 370, 442, 296, 357, 411, 360, 315, 11, 435, 190, 192, 284, 397, 264, 17, 404, 268, 399, 135, 70, 421, 145, 146, 240, 218, 371, 206, 215, 167, 65, 443, 396, 183, 250, 354, 41, 263, 425, 142, 124, 93, 328, 236, 332, 346, 256, 400, 148, 102, 339, 330, 122, 347, 234, 356, 235, 424, 255, 177, 413, 244, 57, 115, 48, 301, 310, 21, 53, 18, 381, 316, 309, 260, 35, 31, 209, 36, 137, 364, 322, 182, 225, 58, 116, 33, 76, 83, 312, 252, 367, 239, 98, 104, 94, 337, 164, 0, 423, 327, 19, 203, 238, 42, 374, 32, 405, 7, 318, 143, 403, 40, 228, 281, 294, 10, 9, 71, 226, 270, 16, 152, 131, 198, 114, 45, 75, 299, 392, 379, 20, 97, 398, 43, 241, 30, 51, 368, 44, 363, 314, 282, 378, 185, 50, 92, 248, 67, 325, 168, 91, 110, 3, 144, 389, 349, 2, 326, 317, 362, 125, 188, 272, 108, 106, 350, 308, 170, 388, 222, 269, 107, 74, 385, 221, 123, 121, 409, 265, 223, 305, 416, 132, 377, 387, 348, 178, 275, 439, 393, 274, 89, 26, 101, 414, 324, 118, 95, 180, 158, 165, 336, 136, 4, 126, 157, 34, 251, 366, 150, 433, 352, 286, 59, 298, 139, 15, 120, 85, 195, 426, 96, 22, 105, 204, 341, 355, 242, 229, 430, 138, 283, 55, 267, 372, 331, 419, 111, 353, 273, 112, 38, 134, 117, 162, 406, 174, 196, 201, 153, 63, 254, 303, 87, 280, 72, 8, 169, 291, 147, 129, 68, 46, 14, 184, 140, 80, 79, 417, 320, 166, 133, 395, 246, 62, 428, 189, 420, 176, 334, 390, 329, 285, 232, 161, 199, 193, 151, 186, 338, 202, 290, 237, 220, 82, 52, 187, 307, 289, 128, 431, 77, 130, 422, 276, 351, 29, 257, 262, 84, 141, 243, 205, 230, 103, 160, 37, 207, 119, 172, 214, 247, 66, 1, 99, 391, 402, 408, 429]
+Time taken: 1064.5 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [0, 1, 2, 3]
+Time taken: 0.0 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmNoUpdates
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [15, 34, 37, 18, 6, 32, 30, 36, 1, 7, 23, 8, 10, 9, 33, 19, 2, 17, 16, 38, 41, 28, 13, 14, 12, 26, 25, 39, 24, 35, 20, 0, 31, 40, 22, 21, 27, 5, 29, 4, 11, 3]
+Time taken: 6.6 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmNoUpdates
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+Causal order: [6, 9, 8, 1, 4, 3, 0, 5, 11, 12, 7, 2, 10]
+Time taken: 0.14 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmNoUpdates
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [2, 5, 4, 0, 3, 6, 1]
+Time taken: 0.02 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmNoUpdates
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [6, 0, 7, 1, 2, 5, 3, 4]
+Time taken: 0.03 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmNoUpdates
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [1, 4, 7, 2, 3, 0, 8, 6, 5, 9]
+Time taken: 0.19 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmNoUpdates
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500/sp500.csv
+Causal order: [64, 440, 272, 156, 100, 300, 366, 409, 128, 17, 193, 306, 392, 61, 78, 419, 113, 424, 233, 297, 28, 110, 175, 55, 231, 425, 291, 115, 80, 426, 211, 122, 129, 435, 86, 1, 415, 330, 57, 342, 27, 159, 444, 22, 75, 37, 210, 14, 357, 10, 259, 141, 390, 164, 69, 70, 88, 264, 186, 67, 378, 439, 377, 325, 23, 105, 363, 192, 302, 374, 417, 403, 131, 238, 33, 421, 343, 299, 229, 177, 84, 408, 53, 148, 298, 24, 152, 0, 112, 108, 362, 292, 132, 338, 62, 58, 204, 153, 288, 50, 250, 97, 168, 213, 225, 43, 162, 126, 420, 387, 51, 220, 120, 434, 327, 167, 273, 346, 4, 239, 360, 332, 133, 339, 246, 189, 294, 370, 285, 121, 356, 46, 431, 111, 336, 317, 11, 432, 66, 157, 284, 265, 433, 281, 337, 271, 41, 258, 249, 334, 102, 109, 218, 107, 372, 99, 77, 319, 71, 188, 45, 174, 351, 173, 226, 398, 194, 183, 217, 345, 224, 138, 416, 150, 181, 8, 137, 423, 240, 335, 400, 442, 311, 401, 326, 348, 163, 352, 320, 208, 82, 274, 430, 399, 94, 234, 16, 158, 393, 301, 256, 29, 182, 243, 381, 251, 376, 30, 293, 418, 322, 206, 6, 54, 283, 269, 179, 103, 143, 438, 199, 404, 197, 52, 3, 187, 172, 222, 202, 59, 411, 353, 166, 90, 2, 277, 38, 200, 428, 114, 171, 312, 257, 139, 282, 405, 165, 95, 119, 79, 207, 276, 395, 223, 81, 227, 266, 286, 382, 65, 35, 63, 414, 85, 146, 18, 31, 394, 7, 328, 304, 130, 316, 219, 235, 160, 72, 347, 407, 389, 375, 365, 313, 427, 340, 349, 278, 241, 68, 384, 42, 123, 245, 140, 279, 25, 101, 135, 314, 44, 19, 180, 214, 142, 170, 254, 155, 185, 125, 361, 237, 422, 263, 248, 60, 396, 295, 323, 344, 215, 333, 383, 5, 93, 26, 341, 318, 388, 203, 154, 221, 380, 151, 385, 12, 413, 436, 268, 367, 104, 310, 397, 47, 255, 307, 76, 127, 368, 161, 73, 56, 21, 116, 230, 441, 118, 391, 364, 198, 106, 321, 40, 145, 191, 371, 124, 329, 253, 196, 15, 315, 270, 89, 267, 13, 96, 91, 216, 359, 262, 305, 350, 149, 190, 260, 92, 296, 209, 443, 252, 242, 178, 20, 34, 287, 386, 369, 429, 205, 176, 280, 32, 9, 36, 324, 358, 354, 83, 48, 136, 303, 261, 117, 144, 39, 98, 379, 184, 232, 331, 236, 402, 406, 289, 74, 290, 247, 195, 275, 87, 134, 244, 355, 309, 147, 228, 308, 49, 373, 410, 212, 437, 201, 169, 412]
+Time taken: 7774.01 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmNoUpdates
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 3, 0, 2]
+Time taken: 0.01 seconds
+
+Algorithm type: Causal Order
+Algorithm name: DirectLingamAlgorithmNoUpdates
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 3, 0, 2]
+Time taken: 0.01 seconds
+
+Algorithm type: Causal Order
+Algorithm name: ParaLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [6, 8, 7, 24, 5, 3, 19, 9, 1, 31, 40, 28, 25, 23, 27, 41, 18, 30, 37, 0, 10, 29, 20, 16, 36, 12, 2, 33, 34, 32, 11, 13, 39, 21, 35, 38, 22, 26, 4, 15, 17, 14]
+Time taken: 33.99 seconds
+
+Algorithm type: Causal Order
+Algorithm name: ParaLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+Causal order: [5, 0, 11, 10, 7, 2, 8, 6, 1, 3, 12, 9, 4]
+Time taken: 37.81 seconds
+
+Algorithm type: Causal Order
+Algorithm name: ParaLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [5, 6, 2, 4, 0, 3, 1]
+Time taken: 14.04 seconds
+
+Algorithm type: Causal Order
+Algorithm name: ParaLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [5, 3, 4, 7, 6, 0, 1, 2]
+Time taken: 17.5 seconds
+
+Algorithm type: Causal Order
+Algorithm name: ParaLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [0, 2, 3, 9, 5, 6, 7, 8, 4, 1]
+Time taken: 22.12 seconds
+
+Algorithm type: Causal Order
+Algorithm name: ParaLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [0, 1, 2, 3]
+Time taken: 11.76 seconds
+
+Algorithm type: Causal Order
+Algorithm name: SimplifiedLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 0, 3, 2]
+Time taken: 0.0 seconds
+
+Algorithm type: Causal Order
+Algorithm name: ThresholdLingamAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 0, 3, 2]
+Time taken: 0.0 seconds
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [15, 6, 38, 19, 23, 36, 37, 29, 39, 5, 34, 4, 24, 12, 22, 2, 35, 3, 1, 9, 13, 26, 28, 14, 8, 33, 30, 20, 25, 7, 0, 11, 41, 10, 31, 27, 18, 21, 16, 40, 17, 32]
+Time taken: 3.91 seconds
+Summary matrix: 
+[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+Causal order: [6, 9, 8, 1, 4, 3, 0, 11, 5, 10, 12, 7, 2]
+Time taken: 0.09 seconds
+Summary matrix: 
+[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [2, 1, 4, 3, 5, 0, 6]
+Time taken: 0.02 seconds
+Summary matrix: 
+[[0.00000000e+00 2.46813831e-02 1.54967504e-01 1.38098637e-01
+  0.00000000e+00 1.26326757e-04 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 1.04287681e-01 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 5.85253556e-01 9.45208165e-01 0.00000000e+00
+  1.41873512e-01 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 6.14785361e-01 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 5.22227738e+02 1.60007346e+03
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [3.26179684e+01 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [6, 0, 7, 1, 3, 4, 2, 5]
+Time taken: 0.02 seconds
+Summary matrix: 
+[[0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [1, 7, 4, 3, 2, 0, 8, 9, 6, 5]
+Time taken: 0.13 seconds
+Summary matrix: 
+[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500/sp500.csv
+Causal order: [64, 440, 426, 37, 113, 17, 24, 312, 305, 84, 51, 27, 131, 126, 233, 86, 427, 186, 351, 46, 97, 393, 157, 3, 401, 169, 197, 345, 373, 125, 392, 227, 259, 278, 224, 407, 418, 241, 326, 391, 21, 208, 2, 314, 375, 155, 145, 238, 67, 396, 158, 16, 148, 63, 300, 35, 39, 170, 77, 293, 181, 428, 311, 54, 341, 298, 53, 250, 317, 411, 269, 394, 122, 7, 14, 71, 344, 230, 89, 310, 348, 161, 323, 49, 442, 73, 320, 405, 403, 383, 294, 42, 90, 11, 424, 252, 263, 364, 352, 153, 218, 260, 245, 367, 182, 220, 378, 379, 240, 299, 115, 244, 83, 107, 36, 59, 30, 118, 398, 249, 318, 143, 98, 70, 437, 151, 340, 262, 31, 255, 337, 283, 439, 47, 339, 216, 168, 50, 199, 18, 33, 248, 315, 140, 23, 109, 413, 225, 191, 130, 154, 81, 163, 175, 268, 267, 104, 212, 438, 342, 10, 210, 370, 38, 177, 65, 271, 228, 6, 22, 219, 443, 306, 0, 441, 110, 386, 425, 421, 203, 127, 404, 365, 286, 137, 436, 58, 381, 235, 173, 279, 41, 76, 256, 114, 209, 164, 296, 149, 277, 226, 397, 301, 389, 319, 222, 387, 409, 185, 206, 45, 135, 356, 205, 282, 325, 295, 363, 359, 60, 25, 332, 366, 246, 215, 102, 354, 111, 234, 20, 192, 382, 322, 211, 183, 360, 388, 28, 178, 432, 194, 74, 32, 13, 261, 132, 304, 335, 346, 12, 372, 43, 88, 349, 128, 362, 420, 412, 92, 416, 377, 371, 121, 435, 57, 9, 108, 179, 287, 285, 198, 258, 213, 347, 146, 272, 333, 400, 369, 313, 350, 423, 142, 395, 75, 150, 116, 316, 321, 221, 136, 44, 223, 5, 236, 308, 190, 292, 124, 93, 95, 85, 91, 368, 276, 167, 288, 231, 309, 96, 399, 357, 19, 48, 123, 355, 239, 331, 180, 430, 242, 273, 156, 419, 275, 112, 330, 4, 94, 385, 100, 353, 120, 284, 119, 176, 193, 152, 361, 274, 195, 165, 204, 61, 327, 406, 265, 431, 174, 138, 217, 133, 66, 117, 281, 270, 374, 280, 29, 402, 243, 106, 207, 160, 101, 291, 414, 1, 200, 166, 87, 134, 229, 384, 417, 196, 34, 72, 433, 56, 297, 162, 254, 68, 26, 147, 415, 159, 328, 334, 247, 408, 429, 303, 444, 8, 55, 105, 410, 172, 187, 99, 171, 336, 40, 380, 290, 338, 144, 139, 422, 343, 237, 129, 78, 52, 324, 390, 103, 80, 302, 257, 141, 201, 266, 376, 214, 232, 251, 358, 434, 188, 184, 264, 289, 62, 253, 15, 329, 189, 79, 82, 202, 307, 69]
+Time taken: 4373.97 seconds
+Summary matrix: 
+[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 3, 0, 2]
+Time taken: 0.02 seconds
+Summary matrix: 
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfTwo_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 3, 0, 2]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [15, 6, 7, 37, 8, 34, 32, 41, 14, 30, 18, 13, 23, 17, 16, 0, 36, 28, 19, 12, 5, 26, 38, 31, 1, 29, 25, 11, 2, 3, 40, 33, 27, 9, 10, 4, 21, 20, 39, 24, 22, 35]
+Time taken: 1.23 seconds
+Summary matrix: 
+[[0.         0.         0.         ... 0.         0.         0.24577591]
+ [0.08085552 0.         0.         ... 0.         0.         0.05699539]
+ [0.01657988 0.04681111 0.         ... 0.         0.         0.03024784]
+ ...
+ [0.         2.08100236 1.02359815 ... 0.         0.35200525 0.67225816]
+ [0.05762    1.6545548  0.         ... 0.         0.         0.42534682]
+ [0.         0.         0.         ... 0.         0.         0.        ]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [0, 1, 2, 3, 4, 5, 6]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [2.38018226e-01 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [1.27710321e+00 5.81333130e-01 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [2.29716676e+00 0.00000000e+00 4.37375287e-01 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [1.01729840e+00 0.00000000e+00 3.24236724e-01 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [7.32888572e+03 0.00000000e+00 1.16421955e+03 9.01315788e+02
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [3.26179684e+01 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [0, 1, 2, 3, 4, 5, 6, 7]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[0.         0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.01028353 0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.00375213 0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.03806668 0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.05412238 0.         0.74101944 1.35059749 0.         0.
+  0.         0.        ]
+ [0.         0.         1.04182484 0.60307824 0.65282685 0.
+  0.         0.        ]
+ [0.7778212  0.         0.407339   0.         0.         0.04115522
+  0.         0.        ]
+ [0.0034823  0.         0.         0.00289434 0.00289555 0.
+  0.00318597 0.        ]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Time taken: 0.03 seconds
+Summary matrix: 
+[[0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [1.66798895e+00 9.22067254e+01 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [5.90836515e-02 1.24929897e-02 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 9.71367457e-01 8.95268115e-04 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [7.20855298e-01 6.55549263e-01 0.00000000e+00 9.06518136e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [8.26011797e-02 1.24986216e-01 0.00000000e+00 0.00000000e+00
+  1.23247431e-01 5.37351369e-01 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [6.21599228e-03 0.00000000e+00 3.95273999e-05 0.00000000e+00
+  0.00000000e+00 2.74444026e-03 4.42757007e-03 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [1.07569533e-01 0.00000000e+00 0.00000000e+00 4.55938851e+00
+  0.00000000e+00 9.58018483e-02 4.99574251e-02 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [3.75510322e-01 0.00000000e+00 0.00000000e+00 7.64288788e+01
+  2.52136145e-01 1.13511371e-01 0.00000000e+00 3.53623209e+00
+  3.36800712e-01 0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500/sp500.csv
+Causal order: [64, 440, 100, 300, 233, 156, 61, 28, 78, 231, 86, 213, 383, 415, 438, 173, 27, 441, 194, 69, 88, 313, 47, 444, 258, 427, 343, 159, 197, 436, 13, 39, 253, 25, 219, 191, 208, 227, 344, 373, 271, 200, 376, 277, 407, 216, 175, 380, 5, 319, 287, 261, 179, 6, 279, 49, 224, 171, 304, 73, 386, 365, 311, 90, 12, 113, 432, 410, 212, 358, 359, 412, 401, 437, 249, 163, 278, 369, 292, 361, 60, 149, 56, 217, 323, 210, 81, 302, 384, 288, 295, 24, 297, 23, 109, 155, 434, 345, 375, 293, 335, 181, 211, 333, 266, 321, 382, 154, 418, 394, 306, 127, 54, 245, 340, 342, 259, 370, 442, 296, 357, 411, 360, 315, 11, 435, 190, 192, 284, 397, 264, 17, 404, 268, 399, 135, 70, 421, 145, 146, 240, 218, 371, 206, 215, 167, 65, 443, 396, 183, 250, 354, 41, 263, 425, 142, 124, 93, 328, 236, 332, 346, 256, 400, 148, 102, 339, 330, 122, 347, 234, 356, 235, 424, 255, 177, 413, 244, 57, 115, 48, 301, 310, 21, 53, 18, 381, 316, 309, 260, 35, 31, 209, 36, 137, 364, 322, 182, 225, 58, 116, 33, 76, 83, 312, 252, 367, 239, 98, 104, 94, 337, 164, 0, 423, 327, 19, 203, 238, 42, 374, 32, 405, 7, 318, 143, 403, 40, 228, 281, 294, 10, 9, 71, 226, 270, 16, 152, 131, 198, 114, 45, 75, 299, 392, 379, 20, 97, 398, 43, 241, 30, 51, 368, 44, 363, 314, 282, 378, 185, 50, 92, 248, 67, 325, 168, 91, 110, 3, 144, 389, 349, 2, 326, 317, 362, 125, 188, 272, 108, 106, 350, 308, 170, 388, 222, 269, 107, 74, 385, 221, 123, 121, 409, 265, 223, 305, 416, 132, 377, 387, 348, 178, 275, 439, 393, 274, 89, 26, 101, 414, 324, 118, 95, 180, 158, 165, 336, 136, 4, 126, 157, 34, 251, 366, 150, 433, 352, 286, 59, 298, 139, 15, 120, 85, 195, 426, 96, 22, 105, 204, 341, 355, 242, 229, 430, 138, 283, 55, 267, 372, 331, 419, 111, 353, 273, 112, 38, 134, 117, 162, 406, 174, 196, 201, 153, 63, 254, 303, 87, 280, 72, 8, 169, 291, 147, 129, 68, 46, 14, 184, 140, 80, 79, 417, 320, 166, 133, 395, 246, 62, 428, 189, 420, 176, 334, 390, 329, 285, 232, 161, 199, 193, 151, 186, 338, 202, 290, 237, 220, 82, 52, 187, 307, 289, 128, 431, 77, 130, 422, 276, 351, 29, 257, 262, 84, 141, 243, 205, 230, 103, 160, 37, 207, 119, 172, 214, 247, 66, 1, 99, 391, 402, 408, 429]
+Time taken: 942.78 seconds
+Summary matrix: 
+[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [0, 1, 2, 3]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[0.         0.         0.         0.        ]
+ [2.04048155 0.         0.         0.        ]
+ [0.47098524 0.02398988 0.         0.        ]
+ [0.72923797 0.07303808 1.09571154 0.        ]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmAddingNodesInBatchesOfX_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [0, 1, 2, 3]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[0.         0.         0.         0.        ]
+ [2.04048155 0.         0.         0.        ]
+ [0.47098524 0.02398988 0.         0.        ]
+ [0.72923797 0.07303808 1.09571154 0.        ]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithmNoUpdates_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 3, 0, 2]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[0.         0.09823321 0.         0.16525796]
+ [0.         0.         0.         0.        ]
+ [0.44986233 0.02230514 0.         0.01696208]
+ [0.         0.2790896  0.         0.        ]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [15, 38, 14, 12, 6, 36, 37, 39, 23, 22, 24, 7, 19, 13, 11, 5, 29, 35, 2, 9, 30, 16, 4, 28, 33, 8, 32, 3, 40, 34, 1, 10, 0, 41, 27, 18, 25, 20, 26, 31, 17, 21]
+Time taken: 7.45 seconds
+Summary matrix: 
+[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+Causal order: [6, 9, 8, 3, 1, 4, 0, 5, 11, 10, 12, 7, 2]
+Time taken: 0.15 seconds
+Summary matrix: 
+[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [2, 3, 5, 0, 1, 6, 4]
+Time taken: 0.02 seconds
+Summary matrix: 
+[[0.00000000e+00 0.00000000e+00 1.53888688e-01 1.38193330e-01
+  0.00000000e+00 1.26939299e-04 0.00000000e+00]
+ [1.51749995e-01 0.00000000e+00 6.09466570e-02 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 1.09346466e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 2.36279866e-04 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 5.22227738e+02 1.60007346e+03
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [3.26179684e+01 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [6, 7, 1, 4, 2, 0, 5, 3]
+Time taken: 0.03 seconds
+Summary matrix: 
+[[0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [1, 4, 7, 2, 3, 0, 8, 6, 5, 9]
+Time taken: 0.21 seconds
+Summary matrix: 
+[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500/sp500.csv
+Causal order: [64, 440, 426, 113, 129, 22, 100, 138, 130, 23, 53, 106, 24, 33, 258, 319, 164, 444, 152, 147, 3, 139, 181, 299, 66, 86, 97, 295, 184, 81, 4, 193, 93, 392, 200, 108, 355, 329, 343, 51, 280, 283, 259, 212, 11, 43, 301, 140, 223, 347, 249, 376, 349, 284, 124, 422, 156, 313, 251, 265, 29, 309, 335, 105, 296, 278, 242, 279, 365, 6, 148, 208, 178, 336, 50, 241, 353, 187, 160, 163, 274, 34, 76, 437, 281, 159, 151, 346, 427, 268, 352, 330, 321, 325, 420, 371, 322, 12, 407, 135, 90, 292, 387, 320, 269, 19, 149, 364, 304, 337, 48, 384, 46, 59, 225, 83, 255, 381, 326, 235, 438, 288, 189, 14, 356, 125, 328, 316, 142, 373, 327, 361, 416, 315, 188, 393, 21, 73, 413, 30, 306, 308, 38, 370, 213, 218, 132, 388, 298, 54, 400, 396, 233, 383, 47, 239, 18, 182, 256, 333, 410, 398, 183, 424, 250, 386, 264, 94, 118, 104, 367, 42, 403, 375, 177, 211, 344, 143, 362, 167, 28, 439, 273, 57, 404, 345, 310, 9, 222, 282, 293, 271, 5, 348, 215, 379, 0, 270, 359, 209, 91, 168, 65, 382, 332, 219, 399, 32, 89, 442, 276, 311, 411, 360, 369, 377, 339, 191, 240, 363, 226, 357, 300, 421, 127, 96, 436, 263, 441, 368, 331, 406, 185, 205, 323, 366, 16, 36, 173, 234, 186, 20, 126, 224, 277, 179, 354, 287, 203, 260, 10, 350, 228, 85, 109, 317, 31, 39, 35, 70, 137, 443, 45, 374, 248, 26, 380, 60, 415, 145, 389, 236, 49, 13, 425, 25, 158, 144, 294, 92, 41, 314, 116, 136, 342, 252, 434, 238, 199, 82, 266, 174, 340, 401, 180, 324, 302, 62, 237, 267, 318, 146, 395, 397, 334, 150, 17, 157, 195, 204, 297, 197, 194, 110, 243, 275, 154, 190, 123, 372, 115, 414, 430, 112, 111, 63, 245, 409, 176, 161, 134, 412, 418, 120, 131, 169, 385, 221, 61, 206, 435, 101, 262, 291, 72, 217, 338, 246, 272, 133, 378, 207, 341, 117, 210, 433, 216, 394, 95, 74, 40, 75, 431, 192, 285, 84, 102, 119, 103, 261, 312, 37, 162, 175, 170, 155, 231, 232, 71, 68, 358, 56, 80, 141, 417, 165, 78, 58, 114, 55, 153, 79, 198, 290, 121, 202, 432, 69, 52, 87, 229, 428, 244, 196, 402, 7, 257, 214, 419, 98, 286, 307, 15, 305, 128, 201, 2, 423, 391, 408, 77, 230, 122, 166, 247, 429, 99, 171, 303, 67, 220, 44, 88, 227, 27, 172, 8, 390, 1, 254, 107, 351, 289, 253, 405]
+Time taken: 9161.6 seconds
+Summary matrix: 
+[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 0, 3, 2]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 0, 3, 2]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamEndToEndAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [15, 38, 14, 12, 6, 36, 37, 39, 23, 22, 24, 7, 19, 13, 11, 5, 29, 35, 2, 9, 30, 16, 4, 28, 33, 8, 32, 3, 40, 34, 1, 10, 0, 41, 27, 18, 25, 20, 26, 31, 17, 21]
+Time taken: 7.58 seconds
+Summary matrix: 
+[[ 0.          0.9529281   0.         ...  0.          0.14759114
+   0.        ]
+ [ 0.          0.          0.07847326 ... -0.00621678  0.01478876
+   0.        ]
+ [ 0.          0.          0.         ...  0.01139446  0.
+   0.        ]
+ ...
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.         -4.02209506 ...  0.23343369  0.
+   0.        ]
+ [ 0.06910235 -0.77558576 -0.45275542 ...  0.          0.26448592
+   0.        ]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamEndToEndAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+Causal order: [6, 9, 8, 3, 1, 4, 0, 5, 11, 10, 12, 7, 2]
+Time taken: 0.15 seconds
+Summary matrix: 
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00  2.84460668e-03
+   0.00000000e+00  0.00000000e+00 -1.49239053e-03  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  2.97632398e-01
+   0.00000000e+00  0.00000000e+00  7.69070306e-02  0.00000000e+00
+  -5.65117044e-02  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00]
+ [ 6.93519477e+00 -3.11154912e-01  0.00000000e+00  6.56994521e-02
+   1.93677631e-04  0.00000000e+00  1.15349542e-01  2.02392064e-01
+  -6.16889796e-02  0.00000000e+00  0.00000000e+00 -2.69702875e-02
+   4.01671119e-02]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   5.08311273e-01  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00]
+ [ 0.00000000e+00  5.62269772e+02  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00 -2.37924493e+01  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00]
+ [ 8.13935032e-01  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00]
+ [ 5.66107624e+00  1.42359805e-01  0.00000000e+00 -6.06283460e-02
+   0.00000000e+00  1.78084756e+00 -1.10929581e-01  0.00000000e+00
+   1.16868319e-01 -1.28431271e-04  0.00000000e+00  0.00000000e+00
+   4.06671856e-02]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  1.85421129e+00  0.00000000e+00
+   0.00000000e+00  4.80536151e-04  0.00000000e+00  0.00000000e+00
+   0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  3.05961286e+02  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.86456323e-02
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  1.25866422e-02
+   0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  7.25173996e-02
+   0.00000000e+00  0.00000000e+00  2.49916808e-01  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00]
+ [ 0.00000000e+00  4.83476747e-01  0.00000000e+00  1.52499534e-01
+   0.00000000e+00  0.00000000e+00 -3.22196129e-01  0.00000000e+00
+   4.41533640e-01 -4.74824183e-04  1.19657087e+00  1.20711060e+00
+   0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamEndToEndAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [2, 3, 5, 0, 1, 6, 4]
+Time taken: 0.02 seconds
+Summary matrix: 
+[[ 0.00000000e+00  0.00000000e+00 -1.53888688e-01  1.38193330e-01
+   0.00000000e+00  1.26939299e-04  0.00000000e+00]
+ [ 1.51749995e-01  0.00000000e+00  6.09466570e-02  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  1.09346466e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00 -2.36279866e-04  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  5.22227738e+02  1.60007346e+03
+   0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [ 3.26179684e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamEndToEndAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [6, 7, 1, 4, 2, 0, 5, 3]
+Time taken: 0.04 seconds
+Summary matrix: 
+[[ 0.00000000e+00  1.05635348e+00 -7.44548770e-01  0.00000000e+00
+   8.76961621e-02  0.00000000e+00  1.24646777e+00 -4.46864270e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  1.31119739e-02  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00 -4.56580964e-03  0.00000000e+00]
+ [-1.94860312e-02  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   3.04338678e-01  2.76959083e-01  0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  1.51341157e-01  3.35587238e+01]
+ [ 0.00000000e+00  0.00000000e+00 -1.30988735e+00  0.00000000e+00
+   1.00286372e+00  0.00000000e+00 -1.77511786e-02  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00 -7.70624641e-04  0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamEndToEndAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [1, 4, 7, 2, 3, 0, 8, 6, 5, 9]
+Time taken: 0.21 seconds
+Summary matrix: 
+[[ 0.00000000e+00  0.00000000e+00  8.88305154e-04  1.21580062e+01
+   0.00000000e+00  0.00000000e+00  0.00000000e+00 -1.55091907e+00
+   0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   8.25877834e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00 -3.44474966e-02  8.72623966e-05  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00 -3.87312519e-01
+   0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  1.05356924e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ [ 3.29756725e-01  2.87030230e-01  0.00000000e+00  1.41831667e+00
+   2.38946643e-01  0.00000000e+00  1.07912465e+00 -1.04754015e+00
+   3.72629099e-01  0.00000000e+00]
+ [ 1.66167850e-01  0.00000000e+00  0.00000000e+00  1.37368906e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   6.55052000e-01  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ [ 1.91552677e-01  0.00000000e+00  0.00000000e+00  5.67187882e+00
+   0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ [ 3.75510322e-01  0.00000000e+00  0.00000000e+00  7.64288788e+01
+  -2.52136145e-01  1.13511371e-01  0.00000000e+00 -3.53623209e+00
+   3.36800712e-01  0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamEndToEndAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 0, 3, 2]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[ 0.         -0.14435498  0.          0.        ]
+ [ 0.          0.          0.          0.        ]
+ [ 0.44986233 -0.02230514  0.          0.01696208]
+ [ 1.24530193 -0.09932406  0.          0.        ]]
+
+Algorithm type: End to End
+Algorithm name: DirectLingamEndToEndAlgorithm
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [1, 0, 3, 2]
+Time taken: 0.01 seconds
+Summary matrix: 
+[[ 0.         -0.14435498  0.          0.        ]
+ [ 0.          0.          0.          0.        ]
+ [ 0.44986233 -0.02230514  0.          0.01696208]
+ [ 1.24530193 -0.09932406  0.          0.        ]]
+
+Algorithm type: End to End
+Algorithm name: ParaLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+Causal order: [6, 8, 7, 24, 5, 3, 19, 9, 1, 31, 28, 0, 40, 25, 27, 10, 41, 18, 30, 37, 23, 29, 20, 16, 36, 12, 2, 33, 34, 32, 11, 13, 39, 21, 35, 38, 22, 26, 4, 15, 17, 14]
+Time taken: 34.06 seconds
+Summary matrix: 
+[[0.         3.38207254 0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ [0.         0.04025823 0.         ... 0.         0.01764769 0.01681697]
+ ...
+ [0.         2.1677323  1.09628482 ... 0.         0.         0.92137873]
+ [1.09471376 2.87536018 0.         ... 0.         0.         0.        ]
+ [0.15078331 0.39323376 0.         ... 0.         0.29833347 0.        ]]
+
+Algorithm type: End to End
+Algorithm name: ParaLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+Causal order: [5, 0, 11, 10, 7, 2, 8, 6, 1, 3, 12, 9, 4]
+Time taken: 33.22 seconds
+Summary matrix: 
+[[0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 3.93365343e-01 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00]
+ [6.80635547e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 1.51387860e-01 9.61596923e-02
+  4.37833118e-02 0.00000000e+00 4.32473063e-01 0.00000000e+00
+  0.00000000e+00]
+ [7.34003799e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 2.12353403e-01
+  0.00000000e+00 0.00000000e+00 1.82504894e-01 3.96628231e-02
+  0.00000000e+00]
+ [3.95277586e+00 2.27766169e+00 7.00537105e-01 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 2.29240447e-01 4.43072518e-01
+  3.00560999e-01 0.00000000e+00 5.37394503e-01 7.76887460e-02
+  0.00000000e+00]
+ [2.52900312e+03 5.78356771e+02 3.04700279e+02 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 1.15688999e+02 1.01407794e+02
+  4.70468183e+01 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  1.12134294e+01]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 1.56586075e-01 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 2.36838660e-01
+  4.71143674e-01 0.00000000e+00 0.00000000e+00 5.42788197e-02
+  0.00000000e+00]
+ [7.45077116e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 1.56827005e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 1.96585008e-01 9.86838354e-02
+  0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 1.06836214e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 3.05608247e+00
+  0.00000000e+00 0.00000000e+00 2.64023008e+00 7.95191107e-01
+  0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 1.46765473e+02 1.09480159e+02
+  9.19412138e+01 0.00000000e+00 0.00000000e+00 4.42785953e+01
+  2.36642548e+01]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 2.69928982e-02
+  0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00]
+ [6.53974892e+00 5.57381118e-01 8.83480837e-01 1.18893888e-01
+  0.00000000e+00 3.16205415e+00 3.91367395e-01 3.65399866e-01
+  3.75110601e-01 0.00000000e+00 1.06609433e+00 1.15383125e+00
+  0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: ParaLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_2.csv
+Causal order: [0, 3, 4, 6, 5, 2, 1]
+Time taken: 19.65 seconds
+Summary matrix: 
+[[0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [1.51749995e-01 0.00000000e+00 6.09466570e-02 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [5.40096444e+00 0.00000000e+00 0.00000000e+00 7.96785093e-01
+  0.00000000e+00 7.07713783e-04 0.00000000e+00]
+ [2.91625883e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 4.88849246e-01
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [6.23047265e+03 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  7.98390304e+01 0.00000000e+00 0.00000000e+00]
+ [3.26179684e+01 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: ParaLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+Causal order: [5, 3, 4, 7, 6, 0, 1, 2]
+Time taken: 21.99 seconds
+Summary matrix: 
+[[0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 8.20823043e-02 1.26528791e+00 4.56115145e+00]
+ [1.02835312e-02 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [1.72378270e-02 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  2.50245249e-02 2.23504996e-02 1.68764113e-02 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 5.18379711e-01 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 5.24826683e-01
+  0.00000000e+00 5.75198148e-01 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 1.46717250e+00
+  1.81268285e+00 0.00000000e+00 0.00000000e+00 6.20369201e+01]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 5.76487425e-03
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: ParaLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
+Causal order: [0, 3, 9, 5, 6, 7, 8, 2, 4, 1]
+Time taken: 31.01 seconds
+Summary matrix: 
+[[0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  5.91604511e-01 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [2.51948333e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 3.60864639e+00 3.63498065e+00 3.73782191e+01
+  0.00000000e+00 6.35226936e-01]
+ [5.91332922e-02 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [9.92369941e-03 0.00000000e+00 2.25181341e-03 0.00000000e+00
+  0.00000000e+00 2.20297098e-02 1.98242983e-02 0.00000000e+00
+  1.18176028e-02 1.56155911e-03]
+ [6.47334587e-01 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 1.15813126e-01]
+ [7.86221294e-02 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 5.35117340e-01 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]
+ [4.20909700e-03 0.00000000e+00 0.00000000e+00 2.21777764e-01
+  0.00000000e+00 2.05626044e-03 4.35014588e-03 0.00000000e+00
+  0.00000000e+00 3.03136376e-03]
+ [9.46788339e-02 0.00000000e+00 0.00000000e+00 2.23952446e+00
+  0.00000000e+00 9.14681538e-02 4.96045756e-02 0.00000000e+00
+  0.00000000e+00 2.97115958e-02]
+ [5.43006444e-01 0.00000000e+00 0.00000000e+00 7.94465471e+01
+  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+  0.00000000e+00 0.00000000e+00]]
+
+Algorithm type: End to End
+Algorithm name: ParaLingamAlgorithm_followed_by_CausalGraphRecoveryFromCausalOrder
+Target file: /Users/thomasjohnson/Desktop/UROP/ACORN/data/ground_truth_not_available/S&P500/sp500_5_columns/sp500_5_columns.xlsx
+Causal order: [0, 1, 2, 3]
+Time taken: 11.52 seconds
+Summary matrix: 
+[[0.         0.         0.         0.        ]
+ [2.04048155 0.         0.         0.        ]
+ [0.47098524 0.02398988 0.         0.        ]
+ [0.72923797 0.07303808 1.09571154 0.        ]]

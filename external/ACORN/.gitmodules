@@ -1,0 +1,6 @@
+[submodule "external/recover_causal_graph_from_causal_order"]
+	path = external/recover_causal_graph_from_causal_order
+	url = https://github.com/jultrishyyy/Recover-Causal-Graph-from-Causal-Order.git
+[submodule "external/causal_rivers"]
+	path = external/causal_rivers
+	url = https://github.com/CausalRivers/causalrivers.git
