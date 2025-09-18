@@ -18,6 +18,8 @@ Key Features Mirrored from the DPC++ Version:
 import time
 import pandas as pd
 import numpy as np
+import sys
+import os
 from multiprocessing import Pool, Manager
 
 # Assuming the base classes are in these locations as per the original structure.
@@ -54,7 +56,7 @@ def worker_task(args):
         ri_j = xi_std - cov_ij * xj_std
         rj_i = xj_std - cov_ij * xi_std
 
-        diff_mi = ParaLingamFaithful.diff_mutual_info_static(ri_j, rj_i)
+        diff_mi = ParaLingamCausalOrderAlgorithmForFpga.diff_mutual_info_static(ri_j, rj_i)
 
         score_contribution_i = np.min([0, diff_mi]) ** 2
         score_contribution_j = np.min([0, -diff_mi]) ** 2
@@ -64,7 +66,7 @@ def worker_task(args):
         scores[j] += score_contribution_j
 
 
-class ParaLingamFaithful(GenericCausalOrderAlgorithm):
+class ParaLingamCausalOrderAlgorithmForFpga(GenericCausalOrderAlgorithm):
     """
     A faithful Python implementation of the optimized DPC++ ParaLiNGAM algorithm.
     """
@@ -94,8 +96,8 @@ class ParaLingamFaithful(GenericCausalOrderAlgorithm):
     @staticmethod
     def diff_mutual_info_static(ri_j: np.ndarray, rj_i: np.ndarray) -> float:
         """Calculates the difference in mutual information between residuals."""
-        h_ri_j = ParaLingamFaithful._entropy(ri_j)
-        h_rj_i = ParaLingamFaithful._entropy(rj_i)
+        h_ri_j = ParaLingamCausalOrderAlgorithmForFpga._entropy(ri_j)
+        h_rj_i = ParaLingamCausalOrderAlgorithmForFpga._entropy(rj_i)
         return h_ri_j - h_rj_i
 
     def _para_find_root(self, X: np.ndarray, cov: np.ndarray) -> int:
@@ -205,30 +207,64 @@ class ParaLingamFaithful(GenericCausalOrderAlgorithm):
         return K
 
 
+# Generates the same sample data as the C++ example.
+def get_matrix() -> pd.DataFrame:
+    """
+    Return a valid input matrix with type pandas Dataframe
+    """
+    print("Generating sample matrix...")
+    np.random.seed(42)
+    x3 = np.random.uniform(size=1000)
+    x0 = 3.0 * x3 + np.random.uniform(size=1000)
+    x2 = 6.0 * x3 + np.random.uniform(size=1000)
+    x1 = 3.0 * x0 + 2.0 * x2 + np.random.uniform(size=1000)
+    x5 = 4.0 * x0 + np.random.uniform(size=1000)
+    x4 = 8.0 * x0 - 1.0 * x2 + np.random.uniform(size=1000)
+    data = np.array([x0, x1, x2, x3, x4, x5]).T
+    df = pd.DataFrame(data, columns=[f'x{i}' for i in range(6)])
+    return df
+
+
+# Reads a CSV file into a pandas DataFrame.
+def read_csv(filepath: str) -> pd.DataFrame:
+    """
+    Reads a CSV file, skipping any header row.
+    """
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(f"File not found: {filepath}")
+
+    print(f"Reading data from {filepath}...")
+    # Assume the CSV may or may not have a header
+    df = pd.read_csv(filepath, header=None)
+    # Drop non-numeric columns if any exist
+    df = df.select_dtypes(include=np.number)
+    print(f"Successfully read {df.shape[0]} rows and {df.shape[1]} columns.")
+    return df
+
+
 if __name__ == '__main__':
-    def get_matrix() -> pd.DataFrame:
-        """Generates the same sample data as the DPC++ example."""
-        np.random.seed(42)
-        n_samples = 1000
-        x3 = np.random.uniform(size=n_samples)
-        x0 = 3.0 * x3 + np.random.uniform(size=n_samples)
-        x2 = 6.0 * x3 + np.random.uniform(size=n_samples)
-        x1 = 3.0 * x0 + 2.0 * x2 + np.random.uniform(size=n_samples)
-        x5 = 4.0 * x0 + np.random.uniform(size=n_samples)
-        x4 = 8.0 * x0 - 1.0 * x2 + np.random.uniform(size=n_samples)
-
-        data = np.array([x0, x1, x2, x3, x4, x5]).T
-        return pd.DataFrame(data, columns=[f'x{i}' for i in [0, 1, 2, 3, 4, 5]])
-
     print("Running FAITHFUL Python ParaLiNGAM Algorithm...")
-    algorithm = ParaLingamFaithful()
-    sample_data = get_matrix()
 
-    start_time = time.time()
-    causal_order = algorithm.run(sample_data)
-    end_time = time.time()
+    algorithm = ParaLingamCausalOrderAlgorithmForFpga()
+    df = None
 
-    print(f"Causal Order: {causal_order}")
-    print(f"Execution Time: {end_time - start_time:.4f} seconds")
-    # Expected causal order often starts with 3, e.g., [3, 0, 2, 5, 1, 4]
+    try:
+        # Check for a command-line argument (the CSV file path)
+        if len(sys.argv) > 1:
+            filepath = sys.argv[1]
+            df = read_csv(filepath)
+        else:
+            # If no CSV is provided, fall back to the generated matrix
+            print("No CSV file provided. Falling back to sample data generator.")
+            df = get_matrix()
 
+        start_time = time.time()
+        causal_order = algorithm.run(df)
+        end_time = time.time()
+
+        print(f"\nCausal Order: {causal_order}")
+        print(f"Execution Time: {end_time - start_time:.4f} seconds")
+
+    except Exception as e:
+        print(f"\nAn error occurred: {e}", file=sys.stderr)
+        sys.exit(1)

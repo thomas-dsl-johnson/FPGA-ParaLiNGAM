@@ -53,7 +53,7 @@ def worker_task(args):
         rj_i = xj_std - cov_ij * xi_std
 
         # Calculate difference in mutual information (same logic as original).
-        diff_mi = ParaLingamCausalOrderAlgorithm.diff_mutual_info_static(ri_j, rj_i)
+        diff_mi = ParaLingamCausalOrderAlgorithmNew.diff_mutual_info_static(ri_j, rj_i)
 
         # Update scores based on the comparison, as per the DirectLiNGAM paper.
         # The score for j -> i is the negative of i -> j.
@@ -71,7 +71,7 @@ def worker_task(args):
     worker_status[i] = 'completed'
 
 
-class ParaLingamCausalOrderAlgorithm(GenericCausalOrderAlgorithm):
+class ParaLingamCausalOrderAlgorithmNew(GenericCausalOrderAlgorithm):
     """
     Runs a parallelised version of the DirectLiNGAM algorithm inspired by the ParaLiNGAM paper.
 
@@ -129,8 +129,8 @@ class ParaLingamCausalOrderAlgorithm(GenericCausalOrderAlgorithm):
         Based on Equation 7 from the paper, this simplifies to H(r_i_j) - H(r_j_i)
         because the entropy of the standardised original variables cancels out[cite: 199].
         """
-        h_ri_j = ParaLingamCausalOrderAlgorithm.entropy(ri_j)
-        h_rj_i = ParaLingamCausalOrderAlgorithm.entropy(rj_i)
+        h_ri_j = ParaLingamCausalOrderAlgorithmNew.entropy(ri_j)
+        h_rj_i = ParaLingamCausalOrderAlgorithmNew.entropy(rj_i)
         return h_ri_j - h_rj_i
 
     def para_find_root(self, X: np.ndarray, cov: np.ndarray, U_indices: list[int]) -> int:
@@ -326,7 +326,7 @@ if __name__ == '__main__':
 
     # --- Parallelised Algorithm ---
     print("Running Revised and Corrected ParaLiNGAM Algorithm...")
-    algorithm = ParaLingamCausalOrderAlgorithm()
+    algorithm = ParaLingamCausalOrderAlgorithmNew()
     start_time_para = time.time()
     causal_order_para = algorithm.run(get_matrix())
     end_time_para = time.time()
