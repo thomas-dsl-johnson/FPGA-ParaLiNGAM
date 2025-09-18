@@ -7,6 +7,40 @@
 #include <vector>
 #include <stdexcept>
 
+// Generates the same sample data as the Python example.
+Matrix get_matrix() {
+    std::cout << "Generating sample matrix..." << std::endl;
+    constexpr size_t n_samples = 1000;
+    constexpr size_t n_features = 6;
+    
+    std::vector<float> x0(n_samples), x1(n_samples), x2(n_samples),
+                         x3(n_samples), x4(n_samples), x5(n_samples);
+
+    std::mt19937 gen(42);
+    std::uniform_real_distribution<float> dis(0.0, 1.0);
+
+    for (size_t i = 0; i < n_samples; ++i) x3[i] = dis(gen);
+    for (size_t i = 0; i < n_samples; ++i) x0[i] = 3.0f * x3[i] + dis(gen);
+    for (size_t i = 0; i < n_samples; ++i) x2[i] = 6.0f * x3[i] + dis(gen);
+    for (size_t i = 0; i < n_samples; ++i) x1[i] = 3.0f * x0[i] + 2.0f * x2[i] + dis(gen);
+    for (size_t i = 0; i < n_samples; ++i) x5[i] = 4.0f * x0[i] + dis(gen);
+    for (size_t i = 0; i < n_samples; ++i) x4[i] = 8.0f * x0[i] - 1.0f * x2[i] + dis(gen);
+
+    Matrix m;
+    m.rows = n_samples;
+    m.cols = n_features;
+    m.data.resize(n_samples * n_features);
+
+    std::vector<std::vector<float>> temp_data = {x0, x1, x2, x3, x4, x5};
+    for (size_t r = 0; r < n_samples; ++r) {
+        for (size_t c = 0; c < n_features; ++c) {
+            m.data[r * n_features + c] = temp_data[c][r];
+        }
+    }
+    return m;
+}
+
+
 // Reads a CSV file into the Matrix struct.
 Matrix read_csv(const std::string& filepath) {
     std::ifstream file(filepath);
@@ -17,12 +51,10 @@ Matrix read_csv(const std::string& filepath) {
     std::vector<std::vector<float>> records;
     std::string line;
 
-    // Read the file line by line
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         std::string cell;
         std::vector<float> row;
-        // Split the line by commas
         while (std::getline(ss, cell, ',')) {
             try {
                 row.push_back(std::stof(cell));
@@ -44,7 +76,6 @@ Matrix read_csv(const std::string& filepath) {
     m.cols = records[0].size();
     m.data.resize(m.rows * m.cols);
 
-    // Populate the Matrix data in row-major format
     for (size_t r = 0; r < m.rows; ++r) {
         for (size_t c = 0; c < m.cols; ++c) {
             m.data[r * m.cols + c] = records[r][c];
@@ -56,19 +87,21 @@ Matrix read_csv(const std::string& filepath) {
 }
 
 int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        std::cerr << "Usage: " << argv[0] << " <path_to_csv_file>" << std::endl;
-        return 1;
-    }
-
-    std::string filepath = argv[1];
     std::cout << "Running FAITHFUL and OPTIMIZED ParaLiNGAM Algorithm in DPC++..." << std::endl;
 
     ParaLingamCausalOrderAlgorithm algorithm;
     Matrix data;
 
     try {
-        data = read_csv(filepath);
+        if (argc < 2) {
+            // If no CSV is provided, use the generated matrix.
+            std::cout << "No CSV file provided. Falling back to sample data generator." << std::endl;
+            data = get_matrix();
+        } else {
+            // If a CSV file is provided, read it.
+            std::string filepath = argv[1];
+            data = read_csv(filepath);
+        }
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
         return 1;
@@ -90,4 +123,5 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
 
