@@ -21,6 +21,10 @@ Internal:
 
 We have implemented the ParaLiNGAM algorithm in Python ([ACORN repository]()) and we have setup a suitable environment ([FOOD repository]()). The aim is to implement the algorithm with a successful report. 
 
+## Main 
+
+
+
 ## Part 0
 
 We will do a minimal emulation test.
@@ -151,6 +155,28 @@ To do:
 2. True dataflow pipeline, which is the `ideal architecture for FPGAs`.
    Maximize parallelism and improve the clock frequency (fMAX) of the final design.
    We will break the single large kernel back into our smaller, specialized kernels. However, instead of calling them sequentially, we will launch them all to run concurrently and connect them using sycl::ext::intel::pipe objects. Data will stream directly from one kernel to the next without ever touching on-chip RAM blocks.
+
+---
+
+### Enable oneAPI
+
+```bash
+source /mnt/ccnas2/bdp/opt/Intel/oneapi/setvars.sh
+		
+alias quartus='/mnt/ccnas2/bdp/opt/Intel/intelFPGA_pro/21.4/quartus/bin/quartus' 
+		
+export QSYS_ROOTDIR='/mnt/ccnas2/bdp/opt/Intel/intelFPGA_pro/21.4/quartus/sopc_builder/bin' 
+		
+alias quartus_shell='/mnt/ccnas2/bdp/opt/Intel/intelFPGA_pro/21.4/embedded/embedded_command_shell.sh' 
+		
+export PATH=/mnt/ccnas2/bdp/Intel/intelFPGA_pro/21.4/hld/bin:/mnt/ccnas2/bdp/opt/Intel/intelFPGA_pro/21.4/quartus/bin/:$PATH
+```
+
+```bash
+export XILINX_XRT=/opt/xilinx/xrt
+export PATH=$XILINX_XRT/bin:$PATH
+export LD_LIBRARY_PATH=$XILINX_XRT/lib:$LD_LIBRARY_PATH
+```
 
 
 ### Bibliography
