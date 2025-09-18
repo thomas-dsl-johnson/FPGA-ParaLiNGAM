@@ -1,0 +1,5 @@
+# Ignore all .a files
+*.a
+
+# --- Explicitly ignore these files/dirs when they appear inside any directory ending with .prj ---
+*.prj
