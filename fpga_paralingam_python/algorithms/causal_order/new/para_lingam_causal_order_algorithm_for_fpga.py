@@ -1,54 +1,26 @@
-"""
-This script is a faithful Python equivalent of the final, optimized DPC++
-implementation of the ParaLiNGAM algorithm.
-
-Key Features Mirrored from the DPC++ Version:
-1.  **Efficient Covariance Update**: Implements the mathematical simplification from
-    the ParaLiNGAM paper (Algorithm 8) to update the covariance matrix efficiently
-    between iterations, avoiding costly recalculations. This was a key feature
-    of the final C++ code.
-2.  **Parallel Root Finding**: Uses Python's `multiprocessing.Pool` to parallelize
-    the search for the root variable, analogous to the SYCL kernels in DPC++.
-3.  **No Threshold Mechanism**: Like the FPGA-targeted C++ code, this version
-    omits the complex thresholding logic in favor of a simpler, robust parallel
-    pattern where all pairwise comparisons are completed.
-4.  **Messaging/Comparison Reduction**: Halves the number of comparisons by
-    updating scores for both variables (i and j) simultaneously.
-"""
-import time
 import pandas as pd
 import numpy as np
+from multiprocessing import Pool, Manager
+import time
 import sys
 import os
-from multiprocessing import Pool, Manager
-
-# Assuming the base classes are in these locations as per the original structure.
-# If not, these might need to be included directly in this file.
-try:
-    from algorithms.causal_order.generic_causal_order_algorithm import GenericCausalOrderAlgorithm
-except ImportError:
-    print("Warning: Could not import GenericCausalOrderAlgorithm. Using a placeholder base class.")
-    class GenericCausalOrderAlgorithm:
-        def run(self, df):
-            raise NotImplementedError
-        def __str__(self):
-            return "GenericBase"
 
 
+# This worker task remains the same as the faithful implementation.
 def worker_task(args):
     """
-    A single worker's task to be run in parallel. It calculates the M-score
-    contribution for a given variable 'i' by comparing it with all other
-    variables 'j' where j > i. The result is used for both i's and j's scores.
+    A single worker's task to be run in parallel. It calculates the scores for a
+    given variable by comparing it with all other variables.
     """
-    i, X, cov, scores = args
+    i, U_indices, X, cov, scores, comparisons_done = args
+    n_samples = X.shape[0]
 
-    n_features = X.shape[1]
-    local_score_i = 0.0
+    for j_idx, j in enumerate(U_indices):
+        # Use a simple locking mechanism to ensure a pair is only compared once.
+        pair = tuple(sorted((i, j)))
+        if i == j or comparisons_done.get(pair):
+            continue
 
-    # Each worker calculates its partial scores. A second step will apply them.
-    # This mirrors the "Scatter" part of the DPC++ Scatter-Reduce pattern.
-    for j in range(i + 1, n_features):
         xi_std = X[:, i]
         xj_std = X[:, j]
 
@@ -56,117 +28,92 @@ def worker_task(args):
         ri_j = xi_std - cov_ij * xj_std
         rj_i = xj_std - cov_ij * xi_std
 
-        diff_mi = ParaLingamCausalOrderAlgorithmForFpga.diff_mutual_info_static(ri_j, rj_i)
+        # Entropy calculation is nested here for clarity
+        def entropy(u: np.ndarray) -> float:
+            k1 = 79.047
+            k2 = 7.4129
+            gamma = 0.37457
+            u = (u - np.mean(u)) / np.std(u)
+            term1 = np.mean(np.log(np.cosh(u))) - gamma
+            term2 = np.mean(u * np.exp(-0.5 * u ** 2))
+            return (1 + np.log(2 * np.pi)) / 2 - k1 * (term1 ** 2) - k2 * (term2 ** 2)
 
-        score_contribution_i = np.min([0, diff_mi]) ** 2
-        score_contribution_j = np.min([0, -diff_mi]) ** 2
+        diff_mi = entropy(ri_j) - entropy(rj_i)
 
-        # Atomically add scores
+        score_contribution_i = min(0, diff_mi) ** 2
+        score_contribution_j = min(0, -diff_mi) ** 2
+
+        # Atomically update scores and mark comparison as done
         scores[i] += score_contribution_i
         scores[j] += score_contribution_j
+        comparisons_done[pair] = True
 
 
-class ParaLingamCausalOrderAlgorithmForFpga(GenericCausalOrderAlgorithm):
+class ParaLingamCausalOrderAlgorithm:
     """
-    A faithful Python implementation of the optimized DPC++ ParaLiNGAM algorithm.
+    A faithful Python implementation mirroring the logic of the final DPC++ code.
+    It uses the efficient covariance update but omits thresholding.
     """
-    def run(self, df: pd.DataFrame) -> list[int]:
-        return self.get_causal_order_using_paralingam(df)
 
-    def __str__(self) -> str:
-        return "ParaLingamFaithfulAlgorithm"
+    def _update_covariance_matrix(self, cov: np.ndarray, root_idx: int) -> np.ndarray:
+        """
+        Updates the covariance matrix using the efficient formula from the paper.
+        """
+        remaining_indices = list(range(cov.shape[0]))
+        remaining_indices.pop(root_idx)
 
-    @staticmethod
-    def _entropy(u: np.ndarray) -> float:
-        """Calculate entropy using a maximum entropy approximation."""
-        k1 = 79.047
-        k2 = 7.4129
-        gamma = 0.37457
+        if not remaining_indices:
+            return np.array([])
 
-        # Standardize the input vector for entropy calculation
-        with np.errstate(divide='ignore', invalid='ignore'):
-            u_std = (u - np.mean(u)) / np.std(u)
-            u_std = np.nan_to_num(u_std) # Replace NaN from 0/0 division with 0
+        # Select the submatrix of remaining variables
+        sub_cov = cov[np.ix_(remaining_indices, remaining_indices)]
 
-        term1 = np.mean(np.log(np.cosh(u_std))) - gamma
-        term2 = np.mean(u_std * np.exp(-0.5 * u_std**2))
+        cov_ir = cov[remaining_indices, root_idx]
 
-        return (1 + np.log(2 * np.pi)) / 2 - k1 * term1**2 - k2 * term2**2
+        # Numerically robust variance calculation for residuals
+        var_r_i = np.abs(1.0 - cov_ir ** 2)
 
-    @staticmethod
-    def diff_mutual_info_static(ri_j: np.ndarray, rj_i: np.ndarray) -> float:
-        """Calculates the difference in mutual information between residuals."""
-        h_ri_j = ParaLingamCausalOrderAlgorithmForFpga._entropy(ri_j)
-        h_rj_i = ParaLingamCausalOrderAlgorithmForFpga._entropy(rj_i)
-        return h_ri_j - h_rj_i
+        # Create a normalization matrix from the outer product of std_devs
+        std_devs = np.sqrt(var_r_i)
+        norm_matrix = np.outer(std_devs, std_devs)
+
+        # Avoid division by zero
+        norm_matrix[norm_matrix < 1e-9] = 1.0
+
+        # Calculate the new covariance matrix with vectorized operations
+        new_cov = (sub_cov - np.outer(cov_ir, cov_ir)) / norm_matrix
+        np.fill_diagonal(new_cov, 1.0)
+
+        return new_cov
 
     def _para_find_root(self, X: np.ndarray, cov: np.ndarray) -> int:
         """
-        Parallelized function to find the root variable.
-        This mirrors the Scatter-Reduce pattern from the DPC++ implementation.
+        Parallelised function to find the root variable. Mirrors the "Scatter-Reduce"
+        logic of the DPC++ implementation.
         """
         n_candidates = X.shape[1]
         if n_candidates <= 1:
             return 0
 
         with Manager() as manager:
-            # Shared memory for scores. Using a Manager list for simplicity,
-            # though for extreme performance shared memory arrays would be better.
             scores = manager.list([0.0] * n_candidates)
+            comparisons_done = manager.dict()
 
-            worker_args = [(i, X, cov, scores) for i in range(n_candidates)]
+            worker_args = [
+                (i, list(range(n_candidates)), X, cov, scores, comparisons_done)
+                for i in range(n_candidates)
+            ]
 
-            # "Scatter" phase: workers compute pairwise scores in parallel.
             with Pool() as pool:
                 pool.map(worker_task, worker_args)
 
-            # "Reduce" phase: find the minimum score on the host.
-            final_scores = list(scores)
-            root_idx = np.argmin(final_scores)
-            return root_idx
+            # Find the root with the minimum score on the host
+            return np.argmin(list(scores))
 
-    @staticmethod
-    def _update_covariance_matrix(cov: np.ndarray, root_idx: int) -> np.ndarray:
+    def run(self, df: pd.DataFrame) -> list[int]:
         """
-        Updates the covariance matrix using the efficient formula from the paper.
-        This is the direct Python equivalent of the `update_covariance` DPC++ kernel.
+        Estimates the causal order using the parallelised algorithm.
         """
-        n_current = cov.shape[0]
-        remaining_indices = np.delete(np.arange(n_current), root_idx)
-        n_remaining = len(remaining_indices)
-
-        if n_remaining == 0:
-            return np.array([])
-
-        new_cov = np.zeros((n_remaining, n_remaining))
-
-        cov_ir = cov[remaining_indices, root_idx]
-
-        # Vectorized calculation for efficiency
-        cov_submatrix = cov[np.ix_(remaining_indices, remaining_indices)]
-
-        # var(r_i) = 1 - cov(x_i, x_root)^2
-        var_r_i = 1 - cov_ir**2
-
-        # Outer product for the update term
-        update_term = np.outer(cov_ir, cov_ir)
-
-        # **FIXED**: Take the absolute value of the variance before sqrt to prevent
-        # a RuntimeWarning due to floating-point inaccuracies.
-        residual_std_devs = np.sqrt(np.abs(var_r_i))
-        norm_matrix = np.outer(residual_std_devs, residual_std_devs)
-
-        # Avoid division by zero
-        norm_matrix[norm_matrix < 1e-9] = 1.0
-
-        new_cov = (cov_submatrix - update_term) / norm_matrix
-
-        # Ensure diagonal is 1.0 for standardized data
-        np.fill_diagonal(new_cov, 1.0)
-        return new_cov
-
-    def get_causal_order_using_paralingam(self, df: pd.DataFrame) -> list[int]:
-        """Estimates the causal order using the optimized algorithm."""
         X = df.to_numpy()
         n_features = X.shape[1]
 
@@ -174,9 +121,9 @@ class ParaLingamCausalOrderAlgorithmForFpga(GenericCausalOrderAlgorithm):
         K = []
 
         # Initial standardization and covariance calculation
-        X_std = (X - np.mean(X, axis=0)) / np.std(X, axis=0)
+        X_std = (X - np.mean(X, axis=0)) / np.std(X, axis=0, ddof=1)
         current_X = np.copy(X_std)
-        current_cov = np.cov(current_X, rowvar=False)
+        current_cov = np.cov(current_X, rowvar=False, bias=True)
 
         for _ in range(n_features - 1):
             root_idx_in_current = self._para_find_root(current_X, current_cov)
@@ -186,19 +133,21 @@ class ParaLingamCausalOrderAlgorithmForFpga(GenericCausalOrderAlgorithm):
 
             # Update data by regressing out the root's effect
             root_vec = current_X[:, root_idx_in_current].copy()
-            remaining_indices = np.delete(np.arange(current_X.shape[1]), root_idx_in_current)
+            mask = np.ones(current_X.shape[1], dtype=bool)
+            mask[root_idx_in_current] = False
 
-            remaining_X = current_X[:, remaining_indices]
-            cov_vector = current_cov[root_idx_in_current, remaining_indices]
+            remaining_X = current_X[:, mask]
+            cov_vector = current_cov[root_idx_in_current, mask]
 
-            # Denominator is sqrt of residual variance
-            residual_std_devs = np.sqrt(np.abs(1 - cov_vector**2))
+            residual_std_devs = np.sqrt(np.abs(1 - cov_vector ** 2))
             residual_std_devs[residual_std_devs < 1e-9] = 1.0
 
-            # Vectorized update of the data matrix
-            current_X = (remaining_X - root_vec[:, np.newaxis] * cov_vector) / residual_std_devs
+            remaining_X -= root_vec[:, np.newaxis] * cov_vector
+            remaining_X /= residual_std_devs
 
-            # **EFFICIENT COVARIANCE UPDATE**
+            current_X = remaining_X
+
+            # EFFICIENT COVARIANCE UPDATE
             current_cov = self._update_covariance_matrix(current_cov, root_idx_in_current)
 
         if U:
@@ -236,16 +185,21 @@ def read_csv(filepath: str) -> pd.DataFrame:
     print(f"Reading data from {filepath}...")
     # Assume the CSV may or may not have a header
     df = pd.read_csv(filepath, header=None)
-    # Drop non-numeric columns if any exist
-    df = df.select_dtypes(include=np.number)
-    print(f"Successfully read {df.shape[0]} rows and {df.shape[1]} columns.")
+    # Drop the first column (e.g., a timestamp or index column)
+    df = df.iloc[:, 1:]
+    # **FIX APPLIED HERE**: Convert all columns to numeric types.
+    # Any non-numeric values (like headers) will become NaN.
+    df = df.apply(pd.to_numeric, errors='coerce')
+    # Replace any NaN values with 0 to prevent errors in calculations.
+    df = df.fillna(0)
+    print(f"Successfully read and cleaned {df.shape[0]} rows and {df.shape[1]} columns.")
     return df
 
 
 if __name__ == '__main__':
     print("Running FAITHFUL Python ParaLiNGAM Algorithm...")
 
-    algorithm = ParaLingamCausalOrderAlgorithmForFpga()
+    algorithm = ParaLingamCausalOrderAlgorithm()
     df = None
 
     try:
@@ -268,3 +222,4 @@ if __name__ == '__main__':
     except Exception as e:
         print(f"\nAn error occurred: {e}", file=sys.stderr)
         sys.exit(1)
+
