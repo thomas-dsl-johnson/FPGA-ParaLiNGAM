@@ -1,4 +1,3 @@
-"""
 # Based on:
 # ParaLiNGAM: Parallel Causal Structure Learning for Linear non-Gaussian Acyclic Models
 # https://arxiv.org/pdf/2109.13993
@@ -14,33 +13,41 @@ from multiprocessing import Pool, Manager
 from algorithms.causal_order.generic_causal_order_algorithm import GenericCausalOrderAlgorithm
 import time
 
+
 def worker_task(args):
-    # Helper function for the worker processes. Must be defined at the top level for multiprocessing.
     """
     A single worker's task to be run in parallel.
     It calculates the contribution to the M-score for a given variable 'i' by comparing it
-    with a subset of other variables. This embodies the "Compare" and "Messaging"
-    concepts from the ParaLiNGAM paper.
+    with a subset of other variables. This embodies the "Compare", "Messaging",
+    and "Threshold" concepts from the ParaLiNGAM paper[cite: 217, 218, 227].
+
+    A worker will stop its comparisons if its score exceeds the shared threshold[cite: 315].
     """
-    i, U_indices, X, cov, scores, comparisons_done = args
+    i, U_indices, X, cov, scores, comparisons_done, threshold, worker_status = args
 
     # Each worker 'i' only needs to compare against 'j' where j > i.
     # The result of the comparison is used for both i's score and j's score,
-    # effectively "messaging" the result to worker j and halving the total work.
+    # effectively "messaging" the result and halving the total work[cite: 297].
     for j_idx, j in enumerate(U_indices):
         if i >= j:
             continue
 
-        # Check if the reverse comparison has already been performed by another worker.
-        # This is a simple locking mechanism.
-        if comparisons_done.get((i, j)):
+        # If score exceeds threshold, stop performing comparisons for this worker[cite: 310, 443].
+        # This is the core of the threshold mechanism.
+        if scores[i] > threshold.value:
+            worker_status[i] = 'threshold_exceeded'
+            return
+
+        # Use a simple locking mechanism to ensure a pair is only compared once.
+        pair = tuple(sorted((i, j)))
+        if comparisons_done.get(pair):
             continue
 
         xi_std = X[:, i]
         xj_std = X[:, j]
 
         # Calculate residuals using pre-computed covariance.
-        # This avoids re-calculating regression coefficients.
+        # This aligns with the paper's note that residuals only need the covariance matrix[cite: 361].
         cov_ij = cov[i, j]
         ri_j = xi_std - cov_ij * xj_std
         rj_i = xj_std - cov_ij * xi_std
@@ -58,7 +65,10 @@ def worker_task(args):
         scores[j] += score_contribution_j
 
         # Mark this pair as completed.
-        comparisons_done[(i, j)] = True
+        comparisons_done[pair] = True
+
+    # If the loop completes, the worker has finished all its comparisons.
+    worker_status[i] = 'completed'
 
 
 class ParaLingamCausalOrderAlgorithm(GenericCausalOrderAlgorithm):
@@ -67,13 +77,16 @@ class ParaLingamCausalOrderAlgorithm(GenericCausalOrderAlgorithm):
 
     This implementation incorporates several key optimisations:
     1.  **Parallel Root Finding**: Uses multiprocessing to parallelise the search for the root cause
-        in each iteration, assigning each candidate variable to a separate process.
-    2.  **Efficient Covariance Updates**: Implements the mathematical simplifications from
-        Section 3.4 of the ParaLiNGAM paper. It calculates the covariance matrix once and then
-        applies a fast update formula in each iteration, avoiding costly recalculations.
-    3.  **Messaging/Comparison Reduction**: Halves the number of necessary comparisons by ensuring
+        in each iteration, assigning each candidate variable to a separate process[cite: 72].
+    2.  **Threshold Mechanism**: Implements the thresholding and scheduling logic from the paper
+        to dramatically reduce the number of pairwise comparisons by terminating workers whose
+        scores exceed a dynamic threshold[cite: 10, 311].
+    3.  **Efficient Covariance Updates**: Implements the mathematical simplifications from
+        Section 3.4 of the ParaLiNGAM paper[cite: 290]. It calculates the covariance matrix once and then
+        applies a fast update formula in each iteration, avoiding costly recalculations[cite: 248, 387].
+    4.  **Messaging/Comparison Reduction**: Halves the number of necessary comparisons by ensuring
         that when variable `i` is compared with `j`, the result is used to update the scores
-        for both variables simultaneously.
+        for both variables simultaneously[cite: 11, 296, 297].
     """
 
     def run(self, df: pd.DataFrame) -> list[int]:
@@ -99,27 +112,12 @@ class ParaLingamCausalOrderAlgorithm(GenericCausalOrderAlgorithm):
     def entropy(u: np.ndarray) -> float:
         """
         Same as original DirectLiNGAM algorithm
-        Calculate entropy using a maximum entropy approximation.
-
-        This function computes an approximation of the differential entropy of a random variable `u`
-        using a specific parametric formula involving the log-cosh and Gaussian-weighted expectation terms.
-
-        Parameters
-        ----------
-        u : array-like
-            Input data, typically a 1D NumPy array or list of real-valued samples.
-
-        Returns
-        -------
-        entropy_value : float
-            The estimated entropy of the input variable `u`.
+        Calculate entropy using a maximum entropy approximation[cite: 200, 201].
         """
         k1 = 79.047
         k2 = 7.4129
         gamma = 0.37457
-        # Ensure input is a numpy array for vectorised operations
         u = np.asarray(u)
-        # Standardise the input vector for entropy calculation
         u = (u - np.mean(u)) / np.std(u)
         return (1 + np.log(2 * np.pi)) / 2 - k1 * (
                 np.mean(np.log(np.cosh(u))) - gamma) ** 2 - k2 * (np.mean(u * np.exp((-(u ** 2)) / 2))) ** 2
@@ -129,9 +127,8 @@ class ParaLingamCausalOrderAlgorithm(GenericCausalOrderAlgorithm):
         """
         Static version of the mutual information difference calculation.
         Based on Equation 7 from the paper, this simplifies to H(r_i_j) - H(r_j_i)
-        because the entropy of the standardised original variables cancels out.
+        because the entropy of the standardised original variables cancels out[cite: 199].
         """
-        # Residuals must be standardised before calculating entropy.
         h_ri_j = ParaLingamCausalOrderAlgorithm.entropy(ri_j)
         h_rj_i = ParaLingamCausalOrderAlgorithm.entropy(rj_i)
         return h_ri_j - h_rj_i
@@ -139,68 +136,116 @@ class ParaLingamCausalOrderAlgorithm(GenericCausalOrderAlgorithm):
     def para_find_root(self, X: np.ndarray, cov: np.ndarray, U_indices: list[int]) -> int:
         """
         Parallelised function to find the root variable among the candidates in U.
-        This corresponds to the 'ParaFindRoot' function in the paper.
+        This corresponds to the 'ParaFindRoot' function and incorporates the iterative
+        scheduling and thresholding logic from the paper[cite: 220, 331].
         """
         n_candidates = len(U_indices)
         if n_candidates == 1:
             return 0
 
         with Manager() as manager:
-            # Shared memory for scores and tracking completed comparisons.
+            # Shared memory for scores and tracking.
             scores = manager.list([0.0] * n_candidates)
             comparisons_done = manager.dict()
+            # The threshold 'gamma' starts small and is increased if needed[cite: 314].
+            threshold = manager.Value('f', 0.01)
+            # Tracks if a worker finished all comparisons or was stopped by the threshold.
+            worker_status = manager.list(['pending'] * n_candidates)
 
-            # Prepare arguments for each worker process.
-            worker_args = [(i, U_indices, X, cov, scores, comparisons_done) for i in range(n_candidates)]
+            finished = False
+            while not finished:
+                worker_args = [
+                    (i, U_indices, X, cov, scores, comparisons_done, threshold, worker_status)
+                    for i in range(n_candidates)
+                ]
 
-            # Create a pool of workers and distribute the tasks.
-            with Pool() as pool:
-                pool.map(worker_task, worker_args)
+                with Pool() as pool:
+                    pool.map(worker_task, worker_args)
 
-            # The root is the variable with the minimum score (most independent).
+                # --- Scheduler Logic (based on Algorithm 6) ---
+                # Check if termination condition is met: at least one worker completed
+                # its comparisons with a score below the threshold[cite: 332].
+                can_terminate = any(
+                    status == 'completed' and scores[i] <= threshold.value
+                    for i, status in enumerate(worker_status)
+                )
+
+                if can_terminate:
+                    finished = True
+                else:
+                    # If all active workers have scores above the threshold, increase it[cite: 316, 338].
+                    all_workers_stuck = all(score > threshold.value for score in scores)
+                    if all_workers_stuck:
+                        threshold.value *= 2  # Simple update rule [cite: 340]
+
+                    # Reset status for workers that can continue with the new threshold
+                    for i in range(n_candidates):
+                        if worker_status[i] == 'threshold_exceeded':
+                            worker_status[i] = 'pending'
+
+            # Find the root among the workers that completed below the threshold.
             min_score = float('inf')
             root_idx = -1
-            final_scores = list(scores)  # Convert proxy to list
+            final_scores = list(scores)
+            final_status = list(worker_status)
+
             for i, score in enumerate(final_scores):
-                if score < min_score:
-                    min_score = score
-                    root_idx = i
+                # The root is the worker with the minimum score from the group that
+                # finished its comparisons below the final threshold[cite: 323, 324].
+                if final_status[i] == 'completed' and score <= threshold.value:
+                    if score < min_score:
+                        min_score = score
+                        root_idx = i
+
+            # This case should ideally not be hit if the threshold logic works correctly,
+            # but as a fallback, we pick the absolute minimum score.
+            if root_idx == -1:
+                root_idx = np.argmin(final_scores)
 
             return root_idx
 
     @staticmethod
-    def update_covariance_matrix(cov: np.ndarray, root_idx: int, remaining_indices: list[int]) -> np.ndarray:
+    def update_covariance_matrix(cov: np.ndarray, root_idx: int) -> np.ndarray:
         """
         Updates the covariance matrix for the next iteration using the mathematical
-        simplification from Algorithm 8 in the ParaLiNGAM paper.
+        simplification from Algorithm 8 in the ParaLiNGAM paper[cite: 389].
+        This is much faster than re-computing from the data.
         """
+        # Get indices for remaining variables
+        remaining_indices = list(range(cov.shape[0]))
+        remaining_indices.pop(root_idx)
         n_remaining = len(remaining_indices)
+
+        if n_remaining == 0:
+            return np.array([])
+
         new_cov = np.zeros((n_remaining, n_remaining))
 
-        for i_idx, i in enumerate(remaining_indices):
-            for j_idx, j in enumerate(remaining_indices):
-                if i_idx > j_idx:
-                    # Covariance matrix is symmetric
-                    new_cov[i_idx, j_idx] = new_cov[j_idx, i_idx]
-                    continue
+        for i_idx_new, i_idx_old in enumerate(remaining_indices):
+            for j_idx_new, j_idx_old in enumerate(remaining_indices):
+                if i_idx_new > j_idx_new:
+                    continue  # Symmetric matrix
 
-                cov_ij = cov[i, j]
-                cov_ir = cov[i, root_idx]
-                cov_jr = cov[j, root_idx]
+                cov_ij = cov[i_idx_old, j_idx_old]
+                cov_ir = cov[i_idx_old, root_idx]
+                cov_jr = cov[j_idx_old, root_idx]
 
+                # Variance of residuals: var(r_i) = 1 - cov(x_i, x_root)^2 [cite: 365]
                 var_r_i = 1 - cov_ir ** 2
                 var_r_j = 1 - cov_jr ** 2
 
-                # Handle potential floating point inaccuracies where variance is <= 0
-                if var_r_i <= 0 or var_r_j <= 0:
+                if var_r_i <= 1e-9 or var_r_j <= 1e-9:
                     new_cov_ij = 0
                 else:
+                    # Updated covariance formula from paper[cite: 386, 387].
                     new_cov_ij = (cov_ij - cov_ir * cov_jr) / (np.sqrt(var_r_i) * np.sqrt(var_r_j))
 
-                new_cov[i_idx, j_idx] = new_cov_ij
-                if i_idx != j_idx:
-                    new_cov[j_idx, i_idx] = new_cov_ij
+                new_cov[i_idx_new, j_idx_new] = new_cov_ij
+                if i_idx_new != j_idx_new:
+                    new_cov[j_idx_new, i_idx_new] = new_cov_ij
 
+        # Ensure diagonal is 1.0 for standardized data
+        np.fill_diagonal(new_cov, 1.0)
         return new_cov
 
     def get_causal_order_using_paralingam(self, df: pd.DataFrame) -> list[int]:
@@ -219,43 +264,41 @@ class ParaLingamCausalOrderAlgorithm(GenericCausalOrderAlgorithm):
         current_cov = np.cov(current_X, rowvar=False, bias=True)
 
         for _ in range(n_features - 1):
-            # Step 2(a): Find the root in parallel using current data
+            # Step 2(a): Find the root in parallel using current data and covariance
             U_indices_current = list(range(current_X.shape[1]))
             root_idx_in_current = self.para_find_root(current_X, current_cov, U_indices_current)
 
-            # Map the current index back to the original feature index and add to our results
             original_root_idx = U.pop(root_idx_in_current)
             K.append(original_root_idx)
 
             # Step 2(c): Update data and covariance matrix for the next iteration.
 
-            # 1. Get the root vector that will be regressed out
-            root_vec = current_X[:, root_idx_in_current]
-
-            # 2. Get the covariance vector between the root and all OTHER current variables
+            # 1. Update the data matrix by regressing out the root's effect (Algorithm 7) [cite: 370]
+            root_vec = current_X[:, root_idx_in_current].copy()  # Make a copy
             mask = np.ones(current_X.shape[1], dtype=bool)
             mask[root_idx_in_current] = False
-            root_cov_vector = current_cov[root_idx_in_current, mask]
 
-            # 3. Create the new data matrix by removing the root's column
-            current_X = current_X[:, mask]
+            remaining_X = current_X[:, mask]
+            cov_vector = current_cov[root_idx_in_current, mask]
 
-            # 4. Update the new data matrix by regressing out the root and re-normalising
-            for i in range(current_X.shape[1]):
-                col_vec = current_X[:, i]
-                cov_ir = root_cov_vector[i]  # Use the covariance from the masked vector
+            for i in range(remaining_X.shape[1]):
+                col_vec = remaining_X[:, i]
+                cov_ir = cov_vector[i]
 
                 residual = col_vec - cov_ir * root_vec
+                # Denominator is sqrt of residual variance [cite: 367]
                 residual_std_dev = np.sqrt(np.abs(1 - cov_ir ** 2))
 
                 if residual_std_dev > 1e-9:
-                    current_X[:, i] = residual / residual_std_dev
+                    remaining_X[:, i] = residual / residual_std_dev
                 else:
-                    current_X[:, i] = 0
+                    remaining_X[:, i] = 0
 
-            # 5. Re-calculate the covariance matrix from the newly updated data.
-            # This is simpler and less error-prone than complex index mapping.
-            current_cov = np.cov(current_X, rowvar=False, bias=True)
+            current_X = remaining_X
+
+            # 2. Update the covariance matrix using the efficient formula (Algorithm 8) [cite: 248]
+            # This is much faster than recalculating with np.cov().
+            current_cov = self.update_covariance_matrix(current_cov, root_idx_in_current)
 
         # Step 3: Append the last remaining variable
         if U:
@@ -282,7 +325,7 @@ if __name__ == '__main__':
 
 
     # --- Parallelised Algorithm ---
-    print("Running Parallelised ParaLiNGAM Algorithm...")
+    print("Running Revised and Corrected ParaLiNGAM Algorithm...")
     algorithm = ParaLingamCausalOrderAlgorithm()
     start_time_para = time.time()
     causal_order_para = algorithm.run(get_matrix())
