@@ -31,11 +31,14 @@ We will do a minimal emulation test.
 
 ```bash
 # Compile for the FPGA Emulator
-source /opt/intel/oneapi/setvars.sh --force
 icpx -fintelfpga -DFPGA_EMULATOR test_minimal.cpp -o test_minimal.fpga_emu
 
 # Run
 ./test_minimal.fpga_emu
+
+# Output
+Running on device: Intel(R) FPGA Emulation Device
+Minimal test successful. Result: 30
 ```
 
 ## Part 1
@@ -44,16 +47,17 @@ We will do a minimal hardware report test.
 
 ```bash
 # Compile for FPGA Optimisation Report
-source /opt/intel/oneapi/setvars.sh --force
 icpx -fintelfpga -DFPGA_HARDWARE step1_minimal_hw.cpp -Xshardware -fsycl-link=early -Xstarget=Agilex7 -o minimal_report.a
 
 # Output:
-# Segmentation fault
-```
+# Successfully Generates reports
 
+# Copu to local:
 exit
 cd ~/Downloads
-scp -r 34.89.44.85:/home/thomasjohnson/COFFEE/container_assets/Project/para_lingam/part_1 .
+scp -r ccgpu4:/homes/tdj23/UROP/FPGA-ParaLiNGAM/part_1/ .
+```
+
 
 ## Part 2
 
@@ -72,76 +76,65 @@ icpx -fintelfpga -DFPGA_EMULATOR part_2.cpp -o part_2.fpga_emu
 # Kernel execution finished.
 
 # Compile for FPGA optimisation report
-source /opt/intel/oneapi/setvars.sh --force
 icpx -fintelfpga -DFPGA_HARDWARE part_1.cpp -Xshardware -fsycl-link=early -o part_1_report.a
 
-# Output:
-# Segmentation fault (core dumped)
+# Report overview
+Single system kernel:
+System Viewer: Shows one simple kernel system connected to global memory. This is baseline hardware. We just do standardise data.
+Area Estimates: Establishes the minimum resource cost (ALUTs, FFs) for the simplest part of our algorithm. 
 
-# Checking:
-docker stats food_container_w_quartus
-# CONTAINER ID   NAME                       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O       PIDS
-# 53195867be5e   food_container_w_quartus   100.21%   869.1MiB / 125.8GiB   0.67%     2.77kB / 126B   654MB / 406MB   6
-
+# Copy to local
 exit
 cd ~/Downloads
 scp -r 34.89.44.85:/home/thomasjohnson/COFFEE/container_assets/Project/para_lingam/part_2 .
 ```
 
-Single system kernel:
-
-System Viewer: Shows one simple kernel system connected to global memory. This is baseline hardware. We just do standardise data.
-
-Area Estimates: Establishes the minimum resource cost (ALUTs, FFs) for the simplest part of our algorithm. 
-
 ## Part 3
 
 ```bash
-source /opt/intel/oneapi/setvars.sh --force
+# Report
 icpx -fintelfpga -DFPGA_HARDWARE part_3.cpp -Xshardware -fsycl-link=early -Xstarget=Agilex7 -o part3_report.a
-```
 
+# Report Overview
 Integrating a Second Kernel:
-
 System Viewer: Now shows two separate kernel systems. This visually confirms the host-driven architecture where data flows between kernels via off-chip global memory. 
-
 Area Estimates: The total resource usage increases, showing the cost of the added logic for the second kernel. 
+```
 
 ## Part 4
 
 ```bash
-source /opt/intel/oneapi/setvars.sh --force
+# Report
 icpx -fintelfpga -DFPGA_HARDWARE part_4.cpp -Xshardware -fsycl-link=early -Xstarget=Agilex7 -o part_4_report.a
-```
+
+# Overview
 Structuring the Core Logic (Simplified para_find_root)
-
 System Viewer: Shows three separate kernel systems. The third system for para_find_root is visibly more complex
+Area Estimates: The area cost for para_find_root show its structural complexity, but without the high DSP usage from complex maths. 
+Loop Analysis: Reveals the baseline II for the para_find_root loops. An II > 1 indicates a structural bottleneck. We have II NA - to do look into this. 
 
-Area Estimates: The area cost for para_find_root reflects its structural complexity, but without the high DSP usage from complex maths. 
-
-Loop Analysis: Reveals the baseline II for the para_find_root loops. An II > 1 indicates a structural bottleneck. We have II NA. 
+```
 
 ## Part 5
 
 ```bash
+# Report:
 icpx -fintelfpga -DFPGA_HARDWARE part_5.cpp -Xshardware -fsycl-link=early -Xstarget=Agilex7 -o part_5.a
-Compiler Warning: Limiting maximum work-group size to 512 in function const_lambda_2(...) to support private memory.
-```
 
 Implementing the Full Core Logic
-
 Area Estimates: Shows a significant increase in DSP block usage for the para_find_root kernel, reflecting the cost of the complex entropy calculations. 
-
 Loop Analysis: The II of the main loop in para_find_root increases significantly. The report's Details pane will point to a long latency calculation as the bottleneck. 
+```
+
 
 ## Part 6
-
- Full Host-Driven Algorithm
 
 ```bash
 # Source environment if in a new terminal
 source /opt/intel/oneapi/setvars.sh --force
 icpx -fintelfpga -DFPGA_HARDWARE part_6.cpp -Xshardware -fsycl-link=early -Xstarget=Agilex7 -o part_6.a
+
+# Full Host-Driven Algorithm
 ```
 
 ##
