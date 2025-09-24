@@ -178,7 +178,7 @@ To do:
 
 ---
 
-### Enable oneAPI
+## Enable oneAPI
 
 ```bash
 source /mnt/ccnas2/bdp/opt/Intel/oneapi/setvars.sh
@@ -200,6 +200,12 @@ export LD_LIBRARY_PATH=$XILINX_XRT/lib:$LD_LIBRARY_PATH
 
 ---
 
-### Bibliography
+## Outputs
+
+
+
+---
+
+## Bibliography
 
 * [ParaLiNGAM Paper](https://arxiv.org/abs/2109.13993)
