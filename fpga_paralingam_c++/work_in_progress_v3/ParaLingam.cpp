@@ -25,8 +25,13 @@ void ParaLingamCausalOrderAlgorithm::standardize_data(sycl::queue& q, sycl::buff
             }
 
             float mean = sum / num_rows;
-            // **FIX APPLIED HERE FOR ROBUSTNESS**
-            float std_dev = sycl::sqrt(sycl::fabs(sum_sq / num_rows - mean * mean));
+            // FIX: Calculate SAMPLE standard deviation (N-1 denominator) to match Python's ddof=1.
+            // The unbiased estimator for variance is (sum_sq - n*mean^2) / (n-1).
+            float std_dev = 0.0f;
+            if (num_rows > 1) {
+                float variance = sycl::fabs(sum_sq - num_rows * mean * mean) / (num_rows - 1);
+                std_dev = sycl::sqrt(variance);
+            }
 
             if (std_dev > 1e-9f) {
                 for (size_t row = 0; row < num_rows; ++row) {
@@ -57,7 +62,8 @@ void ParaLingamCausalOrderAlgorithm::calculate_covariance(sycl::queue& q, sycl::
                 cov_sum += accessor_x[k][i] * accessor_x[k][j];
             }
             
-            float covariance = cov_sum / (num_rows -1);
+            // FIX: Calculate POPULATION covariance (N denominator) to match Python's bias=True.
+            float covariance = cov_sum / num_rows;
             accessor_cov[i][j] = covariance;
             if (i != j) {
                 accessor_cov[j][i] = covariance;
@@ -88,7 +94,6 @@ void ParaLingamCausalOrderAlgorithm::update_covariance(sycl::queue& q, sycl::buf
             float cov_ir = current_cov[i_old][root_idx];
             float cov_jr = current_cov[j_old][root_idx];
 
-            // **FIX APPLIED HERE**: Use sycl::fabs to prevent sqrt of negative.
             float var_r_i = sycl::fabs(1.0f - cov_ir * cov_ir);
             float var_r_j = sycl::fabs(1.0f - cov_jr * cov_jr);
             
@@ -151,7 +156,7 @@ int ParaLingamCausalOrderAlgorithm::para_find_root(sycl::queue& q, sycl::buffer<
                    sum_sq += residual * residual;
                 }
                 float mean = sum / num_rows;
-                // **FIX APPLIED HERE FOR ROBUSTNESS**
+                // This correctly uses POPULATION std dev (N denominator), matching Python's inner np.std()
                 float std_dev = sycl::sqrt(sycl::fabs(sum_sq / num_rows - mean * mean));
 
                 if (std_dev < 1e-9f) return 0.0f;
@@ -307,4 +312,3 @@ std::vector<int> ParaLingamCausalOrderAlgorithm::run(const Matrix& matrix) {
 std::string ParaLingamCausalOrderAlgorithm::to_string() const {
     return "ParaLingamAlgorithm";
 }
-

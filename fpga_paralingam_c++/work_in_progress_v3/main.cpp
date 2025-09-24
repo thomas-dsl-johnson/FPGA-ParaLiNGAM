@@ -50,19 +50,28 @@ Matrix read_csv(const std::string& filepath) {
 
     std::vector<std::vector<float>> records;
     std::string line;
-
-    std::getline(file, line); // Skips the header row.
+    
+    // This correctly skips a header row if one exists.
+    std::getline(file, line);
 
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         std::string cell;
         std::vector<float> row;
+        
+        // FIX: Added a column counter to skip the first column (index 0).
+        int col_idx = 0;
         while (std::getline(ss, cell, ',')) {
-            try {
-                row.push_back(std::stof(cell));
-            } catch (const std::invalid_argument& e) {
-                // Skips non-numeric cells (like headers)
+            if (col_idx > 0) { // Only process columns after the first one.
+                try {
+                    row.push_back(std::stof(cell));
+                } catch (const std::invalid_argument& e) {
+                    // Python's `coerce` turns invalid values into NaN, which are then filled with 0.
+                    // This mimics that behavior for robust parsing.
+                    row.push_back(0.0f);
+                }
             }
+            col_idx++;
         }
         if (!row.empty()) {
             records.push_back(row);
@@ -125,5 +134,3 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
-
