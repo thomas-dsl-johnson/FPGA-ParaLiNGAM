@@ -212,66 +212,105 @@ cd UROP/FPGA-ParaLiNGAM/fpga_paralingam_c++/work_in_progress/
 # Bavaria
 ./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/Causal_River/Bavaria/rivers_ts_bavaria_preprocessed.csv
 # 175297 rows and 494 columns
+...
 
 # East Germany
 ./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/Causal_River/East\ Germany/rivers_ts_east_germany_preprocessed.csv
 # 175297 rows and 666 columns
+...
 
 # Flood
-./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed_dates_removed.csv
 # 3005 rows and 42 columns
-# Expected Order:[0, 1, 2, 3, 5, 9, 12, 14, 15, 17, 19, 22, 23, 26, 27, 28, 29, 30, 31, 34, 37, 38, 41, 10, 4, 11, 13, 16, 25, 21, 18, 33, 36, 40, 24, 20, 32, 39, 8, 35, 7, 6]
-# Causal Order:  [6, 7, 8, 9, 0, 35, 5, 28, 40, 3, 19, 24, 13, 16, 1, 33, 10, 37, 36, 4, 29, 2, 15, 11, 12, 14, 17, 18, 20, 21, 22, 23, 25, 26, 27, 30, 31, 32, 34, 38, 39, 41]
-# Execution Time: 1.8386 seconds
+# Expected Order: [0, 1, 2, 3, 5, 9, 12, 14, 15, 17, 19, 22, 23, 26, 27, 28, 29, 30, 31, 34, 37, 38, 41, 10, 4, 11, 13, 16, 25, 21, 18, 33, 36, 40, 24, 20, 32, 39, 8, 35, 7, 6]
+# Emulation:
+./paralingam_emu ../../external/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+# Causal Order:   [6, 7, 8, 24, 5, 3, 19, 9, 1, 31, 28, 27, 41, 18, 23, 25, 40, 30, 37, 0, 10, 29, 16, 20, 36, 12, 2, 33, 34, 32, 11, 13, 39, 21, 35, 38, 26, 22, 4, 17, 15, 14]
+# Execution Time: 0.652211 seconds
+# Python:
+ python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
+# Causal Order:   [6, 7, 8, 9, 0, 35, 5, 30, 21, 38, 3, 41, 31, 22, 33, 40, 12, 1, 11, 14, 28, 24, 19, 27, 32, 37, 18, 34, 25, 16, 20, 26, 23, 2, 39, 29, 10, 36, 17, 4, 15, 13]
+# Execution Time: 77.6899 seconds
+
 ```
 
 #### IT Monitoring (Ground Truth Available)
 
 ```bash
 # Antivirus Activity
-./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_3_antivirus.csv
-# 1321 rows and 2 columns
+# 1321 rows and 13 columns
 # Expected Order: [12, 10, 11, 4, 9, 2, 3, 7, 8, 0, 1, 5, 6]
-# Causal Order:   [5, 0, 11, 10, 7, 2, 8, 6, 1, 3, 12, 9, 4]
-# Execution Time: 0.637585 seconds
+# Emulation:
+./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
+# Causal Order: [ 5 0 11 10 7 2 8 3 1 6 12 9 4 ]
+# Execution Time: 0.936734 seconds
+# Python:
+ python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_1.csv                     
+# Causal Order: [11, 0, 5, 10, 7, 2, 8, 6, 1, 12, 3, 9, 4]
+# Execution Time: 21.8650 seconds
+
 
 # Middleware Oriented Message Activity
-./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_3.csv
 # 364 rows and 7 columns
 # Expected Order: [0, 1, 2, 3, 5, 4, 6]
-Causal Order:     [6, 5, 4, 2, 3, 0, 1]
-Execution Time: 1.84444 seconds
+# Emulation:
+./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_1.csv
+# Causal Order:   [4, 3, 2, 6, 5, 0, 1]
+# Execution Time: 0.60253 seconds
+# Python:
+python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_1.csv             
+# Causal Order:   [4, 6, 5, 1, 0, 2, 3]
+# Execution Time: 11.2405 seconds
 
 # Storm Ingestion Activity
-./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
 # 991 rows and 7 columns
 # Expected Order: [0, 1, 5, 6, 7, 3, 4, 2]
+# Emulation:
+./paralingam_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
 Causal Order:     [5, 3, 4, 7, 6, 0, 1, 2]
-Execution Time: 1.68391 seconds
+Execution Time: 0.589296 seconds
+# Python:
+python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
+# Causal Order: [4, 3, 5, 7, 6, 0, 1, 2]
+# Execution Time: 12.4361 seconds
 
 # Web Activity
-./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_3.csv
 # 7501 rows and 10 columns
 # Expected Order: [3, 4, 8, 0, 2, 7, 5, 6, 9, 1]
+# Emulation:
+./paralingam_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
 # Causal Order:   [0, 3, 9, 5, 6, 7, 8, 2, 4, 1]
-# Execution Time: 2.07418 seconds
+# Execution Time: 0.620044 seconds
+# Python:
+python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv         
+# Causal Order:   [0, 3, 9, 5, 6, 7, 8, 2, 4, 1]
+# Execution Time: 15.4919 seconds
+
 ```
 
 #### S&P500 (Ground Truth Not Available)
 
 ```bash
 # S&P500 Full Data
-./paralingam_csv_emu_2 ../../external/ACORN/data/ground_truth_not_available/S\&P500/sp500/sp500.csv
-# Causal Order: [ 416 391 157 152 190 439 193 413 289 201 25 178 293 182 435 300 180 372 198 331 224 426 312 221 141 429 219 265 214 218 336 310 371 332 109 100 422 313 243 266 90 344 95 91 236 220 164 296 388 378 437 123 334 256 82 19 39 54 112 358 15 126 375 295 415 74 258 161 92 337 179 235 346 136 195 71 42 380 122 70 110 205 443 347 400 381 306 404 268 441 87 349 252 248 240 60 0 120 1 2 3 4 5 6 7 8 9 10 11 12 13 14 16 17 18 20 21 22 23 24 26 27 28 29 30 31 32 33 34 35 36 37 38 40 41 43 44 45 46 47 48 49 50 51 52 53 55 56 57 58 59 61 62 63 64 65 66 67 68 69 72 73 75 76 77 78 79 80 81 83 84 85 86 88 89 93 94 96 97 98 99 101 102 103 104 105 106 107 108 111 113 114 115 116 117 118 119 121 124 125 127 128 129 130 131 132 133 134 135 137 138 139 140 142 143 144 145 146 147 148 149 150 151 153 154 155 156 158 159 160 162 163 165 166 167 168 169 170 171 172 173 174 175 176 177 181 183 184 185 186 187 188 189 191 192 194 196 197 199 200 202 203 204 206 207 208 209 210 211 212 213 215 216 217 222 223 225 226 227 228 229 230 231 232 233 234 237 238 239 241 242 244 245 246 247 249 250 251 253 254 255 257 259 260 261 262 263 264 267 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 290 291 292 294 297 298 299 301 302 303 304 305 307 308 309 311 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 333 335 338 339 340 341 342 343 345 348 350 351 352 353 354 355 356 357 359 360 361 362 363 364 365 366 367 368 369 370 373 374 376 377 379 382 383 384 385 386 387 389 390 392 393 394 395 396 397 398 399 401 402 403 405 406 407 408 409 410 411 412 414 417 418 419 420 421 423 424 425 427 428 430 431 432 433 434 436 438 440 442 444 445 ]
-# Execution Time: 32.2842 seconds
+./paralingam_emu ../../external/ACORN/data/ground_truth_not_available/S\&P500/sp500/sp500.csv
+# Emulation:
+# Cuasal Order:[ 415 390 156 151 189 438 192 412 288 200 24 177 292 181 434 330 223 220 169 421 425 361 334 370 295 186 395 362 75 10 109 342 366 264 357 90 38 307 102 407 236 313 336 152 217 106 413 332 26 387 381 444 275 396 111 53 298 94 178 161 251 335 73 160 333 77 246 8 286 419 93 365 312 279 234 309 194 173 81 227 99 219 405 108 225 265 397 18 51 125 67 317 74 320 432 374 435 190 14 377 315 318 394 114 230 41 127 341 30 47 191 91 416 130 197 360 235 388 20 311 13 126 5 240 436 226 310 343 253 233 239 159 224 110 154 344 346 60 71 409 328 213 369 299 155 144 411 167 277 321 148 287 122 135 179 297 86 294 218 44 423 42 89 72 389 263 113 85 21 410 58 255 325 188 116 427 352 32 140 31 273 142 158 210 378 274 242 164 314 115 380 339 442 260 12 107 121 316 326 168 371 306 96 257 145 19 284 283 48 303 404 203 256 340 229 25 183 7 98 356 345 261 46 211 367 175 163 134 39 258 323 322 185 269 281 198 208 391 83 34 33 429 401 216 386 62 59 259 22 222 337 2 403 414 244 296 373 439 270 363 331 16 238 36 358 245 353 0 424 70 250 35 420 308 304 293 398 193 376 354 383 149 249 180 54 28 118 43 400 65 350 215 393 143 368 441 266 69 27 82 375 132 382 348 278 271 206 63 248 153 228 267 76 364 6 17 319 182 392 282 302 49 384 209 241 428 379 443 199 372 97 137 205 268 104 204 50 45 221 418 57 11 399 124 212 301 9 252 23 359 327 272 170 437 280 300 347 139 3 146 262 123 95 101 202 150 136 305 237 131 129 349 187 40 52 92 243 78 66 355 29 431 138 176 157 88 174 285 56 231 385 324 112 37 84 117 162 105 119 120 440 351 55 207 100 195 276 417 430 61 133 4 196 338 433 402 1 64 87 214 80 147 166 426 290 172 247 68 406 15 329 165 254 201 103 141 289 232 184 171 128 79 422 291 408 ]
+# Execution Time: 9.39191 seconds
+python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_not_available/S\&P500/sp500/sp500.csv
+# Python:
+
 ```
 
 #### Test
 
 ```bash
-Expected Order: 3 -> 0, 3 -> 2, 2 -> 1, 0 -> 5, 0 -> 4, 2 -> 4
-Causal Order: [3, 0, 2, 5, 4, 1]
-Execution Time: 0.594343 seconds
+./paralingam_emu
+# Ground truth: 3 -> 0, 3 -> 2, 2 -> 1, 0 -> 5, 0 -> 4, 2 -> 4
+# Emulation:
+# Causal Order: [3, 0, 2, 5, 4, 1]
+# Execution Time: 0.594343 seconds
+# Python:
+# Causal Order: [3, 0, 2, 4, 5, 1]
+# Execution Time: 7.5590 seconds
 ```
 
 ---
