@@ -222,69 +222,90 @@ cd UROP/FPGA-ParaLiNGAM/fpga_paralingam_c++/work_in_progress/
 # Flood
 # 3005 rows and 42 columns
 # Expected Order: [0, 1, 2, 3, 5, 9, 12, 14, 15, 17, 19, 22, 23, 26, 27, 28, 29, 30, 31, 34, 37, 38, 41, 10, 4, 11, 13, 16, 25, 21, 18, 33, 36, 40, 24, 20, 32, 39, 8, 35, 7, 6]
+
 # Emulation:
 ./paralingam_emu ../../external/ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
 # Causal Order:   [6, 7, 8, 24, 5, 3, 19, 9, 1, 31, 28, 27, 41, 18, 23, 25, 40, 30, 37, 0, 10, 29, 16, 20, 36, 12, 2, 33, 34, 32, 11, 13, 39, 21, 35, 38, 26, 22, 4, 17, 15, 14]
 # Execution Time: 0.652211 seconds
+# Ratio of inverted pairs:  0.017421602787456445
+
 # Python:
  python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/Causal_River/Flood/rivers_ts_flood_preprocessed.csv
 # Causal Order:   [6, 7, 8, 9, 0, 35, 5, 30, 21, 38, 3, 41, 31, 22, 33, 40, 12, 1, 11, 14, 28, 24, 19, 27, 32, 37, 18, 34, 25, 16, 20, 26, 23, 2, 39, 29, 10, 36, 17, 4, 15, 13]
 # Execution Time: 77.6899 seconds
+# Ratio of inverted pairs:  0.018583042973286876
 
 ```
 
-#### IT Monitoring (Ground Truth Available)
+### IT Monitoring (Ground Truth Available)
 
-```bash
-# Antivirus Activity
+#### Antivirus Activity
+```
 # 1321 rows and 13 columns
 # Expected Order: [12, 10, 11, 4, 9, 2, 3, 7, 8, 0, 1, 5, 6]
+
 # Emulation:
 ./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_2.csv
-# Causal Order: [ 5 0 11 10 7 2 8 3 1 6 12 9 4 ]
+# Causal Order:   [5, 0, 11, 10, 7, 2, 8, 3, 1, 6, 12, 9, 4]
 # Execution Time: 0.936734 seconds
+# Ratio of inverted pairs:  0.05128205128205128
+
 # Python:
  python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/IT_monitoring/Antivirus_Activity/preprocessed_1.csv                     
 # Causal Order: [11, 0, 5, 10, 7, 2, 8, 6, 1, 12, 3, 9, 4]
 # Execution Time: 21.8650 seconds
-
-
-# Middleware Oriented Message Activity
+# Ratio of inverted pairs:  0.057692307692307696
+```
+#### Middleware Oriented Message Activity
+```
 # 364 rows and 7 columns
 # Expected Order: [0, 1, 2, 3, 5, 4, 6]
+
 # Emulation:
 ./paralingam_csv_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_1.csv
 # Causal Order:   [4, 3, 2, 6, 5, 0, 1]
 # Execution Time: 0.60253 seconds
+# Ratio of inverted pairs:  0.19047619047619047
+
 # Python:
 python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/IT_monitoring/Middleware_oriented_message_Activity/monitoring_metrics_1.csv             
 # Causal Order:   [4, 6, 5, 1, 0, 2, 3]
 # Execution Time: 11.2405 seconds
-
-# Storm Ingestion Activity
+# Ratio of inverted pairs:  0.23809523809523808
+```
+#### Storm Ingestion Activity
+```
 # 991 rows and 7 columns
 # Expected Order: [0, 1, 5, 6, 7, 3, 4, 2]
+
 # Emulation:
 ./paralingam_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
 Causal Order:     [5, 3, 4, 7, 6, 0, 1, 2]
 Execution Time: 0.589296 seconds
+Ratio of inverted pairs:  0.10714285714285714
+
 # Python:
 python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/IT_monitoring/Storm_Ingestion_Activity/storm_data_normal.csv
 # Causal Order: [4, 3, 5, 7, 6, 0, 1, 2]
 # Execution Time: 12.4361 seconds
-
-# Web Activity
+# Ratio of inverted pairs:  0.14285714285714285
+```
+#### Web Activity
+```
 # 7501 rows and 10 columns
 # Expected Order: [3, 4, 8, 0, 2, 7, 5, 6, 9, 1]
+
 # Emulation:
 ./paralingam_emu ../../external/ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv
 # Causal Order:   [0, 3, 9, 5, 6, 7, 8, 2, 4, 1]
 # Execution Time: 0.620044 seconds
+# Ratio of inverted pairs:  0.07777777777777778
+
 # Python:
 python algorithms/causal_order/new/para_lingam_causal_order_algorithm_for_fpga.py ../../ACORN/data/ground_truth_available/IT_monitoring/Web_Activity/preprocessed_2.csv         
 # Causal Order:   [0, 3, 9, 5, 6, 7, 8, 2, 4, 1]
 # Execution Time: 15.4919 seconds
-
+# Ratio of inverted pairs:  0.07777777777777778
 ```
 
 #### S&P500 (Ground Truth Not Available)
