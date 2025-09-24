@@ -270,8 +270,8 @@ Execution Time: 1.68391 seconds
 
 ```bash
 Expected Order: 3 -> 0, 3 -> 2, 2 -> 1, 0 -> 5, 0 -> 4, 2 -> 4
-Causal Order:  [3, 0, 4, 2, 1, 5,]
-Execution Time: 0.956386 seconds
+Causal Order: [3, 0, 2, 5, 4, 1]
+Execution Time: 0.594343 seconds
 ```
 
 ---
