@@ -1,0 +1,35 @@
+#ifndef PARALINGAM_HPP
+#define PARALINGAM_HPP
+
+#include <sycl/sycl.hpp>
+#include <vector>
+#include <string>
+
+// A simple structure to hold the matrix data and its dimensions
+struct Matrix {
+    std::vector<float> data;
+    size_t rows;
+    size_t cols;
+};
+
+class ParaLingamCausalOrderAlgorithm {
+public:
+    // Runs the causal order algorithm.
+    std::vector<int> run(const Matrix& matrix);
+    std::string to_string() const;
+
+private:
+    // Main algorithm logic
+    std::vector<int> get_causal_order_using_paralingam(sycl::queue& q, const Matrix& matrix);
+
+    // Helper functions for various stages of algorithm.
+    void standardize_data(sycl::queue& q, sycl::buffer<float, 2>& buffer_x);
+    void calculate_covariance(sycl::queue& q, sycl::buffer<float, 2>& buffer_x, sycl::buffer<float, 2>& buffer_cov);
+    
+    // Update the covariance matrix for the next iteration.
+    void update_covariance(sycl::queue& q, sycl::buffer<float, 2>& current_cov_buf, sycl::buffer<float, 2>& next_cov_buf, int root_idx);
+
+    int para_find_root(sycl::queue& q, sycl::buffer<float, 2>& buffer_x, sycl::buffer<float, 2>& buffer_cov);
+};
+
+#endif
