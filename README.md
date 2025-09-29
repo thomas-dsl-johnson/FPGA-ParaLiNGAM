@@ -49,7 +49,7 @@ icpx -fintelfpga -DFPGA_EMULATOR main.cpp ParaLingam.cpp -o paralingam_faithful_
 
 FPGA Hardware Report:
 ```bash
-icpx -fintelfpga -Xssource-report main.cpp ParaLingam.cpp -o paralingam_faithful_report
+icpx -fintelfpga -DFPGA_HARDWARE direct_lingam_fpga.cpp -Xshardware -fsycl-link=early -Xstarget=Agilex7 -o report.a
 ```
 
 ## Part 0
