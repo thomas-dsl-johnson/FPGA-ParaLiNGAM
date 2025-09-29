@@ -5,7 +5,6 @@
 #include <vector>
 #include <string>
 
-// A simple structure to hold the matrix data and its dimensions
 struct Matrix {
     std::vector<float> data;
     size_t rows;
